@@ -1,9 +1,16 @@
 format: jb-book
 root: intro
+
 chapters:
-  - file: data_mining  
+  - file: data_mining    
+
   - file: bisnis_understanding  
-  - file: data_understanding  
-    sections:
+    sections:  
       - file: eksplorasi_data  
-      - file: iris_explore  
+        sections:  
+          - file: data_iris
+          - file: analisis_statistik_deskriptif
+          - file: visualisasi_distribusi_data
+
+  - file: iris_explore
+  - file: visualisasi_tools
