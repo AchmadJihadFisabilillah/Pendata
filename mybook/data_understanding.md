@@ -2,7 +2,7 @@
 title: Memahami Data
 ---
 
-# Memahami Data
+# DATA UNDERSTANDING
 
 ```{admonition} Tujuan Pembelajaran
 :class: tip
@@ -136,27 +136,3 @@ x > Q_3 + 1.5 \times IQR
 $$
 
 ---
-
-# 5️⃣ Contoh Implementasi Python
-
-```python
-import pandas as pd
-from scipy import stats
-
-df = pd.read_csv("data.csv", usecols=[0])  # asumsi kolom pertama NilaiPreTest
-
-x = df["NilaiPreTest"]
-
-print("Jumlah data      :", x.count())
-print("Rata-rata (mean) :", x.mean())
-print("Nilai minimum    :", x.min())
-print("Q1 (25%)         :", x.quantile(0.25))
-print("Q2 (median)      :", x.quantile(0.50))
-print("Q3 (75%)         :", x.quantile(0.75))
-print("Nilai maksimum   :", x.max())
-print("Skewness         :", round(x.skew(), 6))
-print("Std Deviasi      :", round(x.std(), 2))
-print("Variansi         :", round(x.var(), 2))
-
-mode = stats.mode(x, keepdims=True)
-print(f"Modus            : {mode.mode[0]} (jumlah {mode.count[0]})")

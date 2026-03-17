@@ -61,6 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'explorasi_data';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PENDAHULUAN" href="data_iris.html" />
+    <link rel="prev" title="DATA UNDERSTANDING" href="data_understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -180,11 +180,70 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="data_mining.html">CRISP-DM (Cross Industry Standard Process for Data Mining)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="bisnis_understanding.html">Business Understanding</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="bisnis_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">DATA UNDERSTANDING</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Eksplorasi Data Dataset Iris</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_iris.html">PENDAHULUAN</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="explorasi_data_iris.html">LAPORAN EKSPLORASI DATASET IRIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jarak_ukur.html">Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3.html">Data Student</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_1.html">Distance in Iris Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_2.html">Distance in Student Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_3.html">Prediksi Nilai Usia yang Hilang Menggunakan KNN</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="preprocessing_data.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="normalisasi_data.html">Normalisasi Data</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="knn.html">K-Nearest Neighbor (KNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_misingvalue.html">KNN Missing Value</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="wknn.html">Weighted K-Nearest Neighbor(WKNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wknn_perhitungan.html">Perhitungan WKNN</a></li>
+
+
+
+
+
+
+
+
 </ul>
 
     </div>
@@ -339,6 +398,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">Tujuan Analisis</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">Deskripsi Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-dataset">Atribut Dataset</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -385,6 +449,30 @@ document.write(`
 </ol>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
+<h1>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
+<section id="deskripsi-dataset">
+<h2>Deskripsi Dataset<a class="headerlink" href="#deskripsi-dataset" title="Link to this heading">#</a></h2>
+<p>Dataset Iris terdiri dari:</p>
+<ul class="simple">
+<li><p>150 baris data</p></li>
+<li><p>5 kolom</p></li>
+<li><p>3 kelas (Setosa, Versicolor, Virginica)</p></li>
+<li><p>Tidak memiliki missing value</p></li>
+</ul>
+</section>
+<section id="atribut-dataset">
+<h2>Atribut Dataset<a class="headerlink" href="#atribut-dataset" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>sepal_length → Panjang kelopak bunga</p></li>
+<li><p>sepal_width → Lebar kelopak bunga</p></li>
+<li><p>petal_length → Panjang mahkota bunga</p></li>
+<li><p>petal_width → Lebar mahkota bunga</p></li>
+<li><p>species → Jenis bunga</p></li>
+</ol>
+<p>Dataset ini seimbang, dengan masing-masing species berjumlah 50 data.</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -416,6 +504,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="data_understanding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DATA UNDERSTANDING</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="data_iris.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PENDAHULUAN</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -436,6 +542,11 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">Business Understanding</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">Tujuan Analisis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">Deskripsi Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atribut-dataset">Atribut Dataset</a></li>
 </ul>
 </li>
 </ul>

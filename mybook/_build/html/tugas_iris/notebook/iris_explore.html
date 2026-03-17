@@ -182,9 +182,18 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../data_mining.html">CRISP-DM (Cross Industry Standard Process for Data Mining)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../bisnis_understanding.html">Business Understanding</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bisnis_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_understanding.html">DATA UNDERSTANDING</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../explorasi_data.html">Eksplorasi Data Dataset Iris</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../data_iris.html">DATA IRIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analisis_data.html">DESKRIPTIF DATA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../visualisasi_data.html">VISUALISASI DISTRIBUSI DATA</a></li>
 </ul>
 
     </div>
@@ -516,44 +525,44 @@ dtype: int64
   </thead>
   <tbody>
     <tr>
-      <th>41</th>
-      <td>4.5</td>
-      <td>2.3</td>
-      <td>1.3</td>
-      <td>0.3</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5.0</td>
-      <td>3.6</td>
-      <td>1.4</td>
-      <td>0.2</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>128</th>
+      <th>131</th>
+      <td>7.9</td>
+      <td>3.8</td>
       <td>6.4</td>
-      <td>2.8</td>
-      <td>5.6</td>
-      <td>2.1</td>
+      <td>2.0</td>
       <td>virginica</td>
     </tr>
     <tr>
-      <th>31</th>
-      <td>5.4</td>
-      <td>3.4</td>
-      <td>1.5</td>
+      <th>77</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>1.7</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>5.6</td>
+      <td>2.7</td>
+      <td>4.2</td>
+      <td>1.3</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>5.1</td>
+      <td>3.8</td>
+      <td>1.9</td>
       <td>0.4</td>
       <td>setosa</td>
     </tr>
     <tr>
-      <th>115</th>
-      <td>6.4</td>
-      <td>3.2</td>
-      <td>5.3</td>
-      <td>2.3</td>
-      <td>virginica</td>
+      <th>34</th>
+      <td>4.9</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
     </tr>
   </tbody>
 </table>
@@ -935,6 +944,42 @@ Name: count, dtype: int64
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/5754c0870159ace4bcddfdfff9a8705a5875e8a5a622082a538ac15de7406133.png" src="../../_images/5754c0870159ace4bcddfdfff9a8705a5875e8a5a622082a538ac15de7406133.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fd0342541330d46592bffc43937890d29350b2fb581abac8a389327aadf7273f.png" src="../../_images/fd0342541330d46592bffc43937890d29350b2fb581abac8a389327aadf7273f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;petal_width&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eb943b5011152e0d38ca64c02d38eefc0d11e914ec4670fafb75e3a83242364f.png" src="../../_images/eb943b5011152e0d38ca64c02d38eefc0d11e914ec4670fafb75e3a83242364f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cb36cac186ebfa6617e837df4824b25b2cc2aff8076ace62b5b0645b5fd930ae.png" src="../../_images/cb36cac186ebfa6617e837df4824b25b2cc2aff8076ace62b5b0645b5fd930ae.png" />
 </div>
 </div>
 <div class="cell docutils container">

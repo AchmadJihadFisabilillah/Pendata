@@ -1,0 +1,1885 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode) &#8212; My NOTEBOOK</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jarak_ukur';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Student" href="pertemuan3.html" />
+    <link rel="prev" title="LAPORAN EKSPLORASI DATASET IRIS" href="explorasi_data_iris.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.png" class="logo__image only-light" alt="My NOTEBOOK - Home"/>
+    <script>document.write(`<img src="_static/foto.png" class="logo__image only-dark" alt="My NOTEBOOK - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    WELCOME TO MY NOTEBOOK
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_mining.html">CRISP-DM (Cross Industry Standard Process for Data Mining)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bisnis_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">DATA UNDERSTANDING</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="explorasi_data.html">Eksplorasi Data Dataset Iris</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_iris.html">PENDAHULUAN</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="explorasi_data_iris.html">LAPORAN EKSPLORASI DATASET IRIS</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3.html">Data Student</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_1.html">Distance in Iris Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_2.html">Distance in Student Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_3.html">Prediksi Nilai Usia yang Hilang Menggunakan KNN</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="preprocessing_data.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="normalisasi_data.html">Normalisasi Data</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="knn.html">K-Nearest Neighbor (KNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_misingvalue.html">KNN Missing Value</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="wknn.html">Weighted K-Nearest Neighbor(WKNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wknn_perhitungan.html">Perhitungan WKNN</a></li>
+
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/jarak_ukur.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-load-data-persiapan-kolom">Setup: Load data &amp; persiapan kolom</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-1-simple-matching-nominal">Metode 1 — Simple Matching (Nominal)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-2-binary-symmetric-simple-matching">Metode 2 — Binary Symmetric (Simple Matching)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-3-binary-asymmetric-jaccard">Metode 3 — Binary Asymmetric (Jaccard)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-4-ordinal-ranking-0-1-interval-scaled-distance">Metode 4 — Ordinal: Ranking → [0,1] → Interval-scaled distance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-5-minkowski-distance-numerik">Metode 5 — Minkowski Distance (Numerik)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-6-cosine-similarity-dan-jarak-1-cos">Metode 6 — Cosine Similarity (dan jarak 1-cos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-7-atribut-campuran-mixed">Metode 7 — Atribut Campuran (Mixed)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-dari-orange-menggunakan-hamming-distance">visualisasi dari orange menggunakan hamming distance</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pengukuran-jarak-similarity-berdasarkan-ppt-semua-metode">
+<h1>Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode)<a class="headerlink" href="#pengukuran-jarak-similarity-berdasarkan-ppt-semua-metode" title="Link to this heading">#</a></h1>
+<p>Notebook ini menghitung ukuran <strong>dissimilarity/jarak</strong> dan/atau <strong>similarity</strong> untuk beberapa tipe data sesuai materi PPT:</p>
+<ul class="simple">
+<li><p><strong>Nominal</strong>: Simple Matching</p></li>
+<li><p><strong>Binary symmetric</strong>: Simple Matching</p></li>
+<li><p><strong>Binary asymmetric</strong>: Jaccard</p></li>
+<li><p><strong>Numerik</strong>: Minkowski Distance (Manhattan, Euclidean, Supremum)</p></li>
+<li><p><strong>Ordinal</strong>: Ranking → skala interval [0,1] → dihitung seperti numerik (interval-scaled)</p></li>
+<li><p><strong>Atribut campuran</strong>: gabungan jarak per-atribut (0/1 untuk nominal/biner, normalisasi untuk numerik, ranking+scaling untuk ordinal)</p></li>
+<li><p><strong>Cosine Similarity</strong> (opsional jarak: (1-\cos))</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="setup-load-data-persiapan-kolom">
+<h1>Setup: Load data &amp; persiapan kolom<a class="headerlink" href="#setup-load-data-persiapan-kolom" title="Link to this heading">#</a></h1>
+<p>Notebook ini memakai file <code class="docutils literal notranslate"><span class="pre">Contoh_Data_Tipe_Data.xlsx</span></code> dan kolom:</p>
+<ul class="simple">
+<li><p>Nama (Nominal)</p></li>
+<li><p>Kota (Nominal)</p></li>
+<li><p>Jenis Kelamin (Biner) → <strong>binary symmetric</strong></p></li>
+<li><p>Status Kelulusan (Biner) → <strong>binary asymmetric</strong></p></li>
+<li><p>Tingkat Pendidikan (Ordinal) → diubah jadi ranking lalu skala [0,1]</p></li>
+<li><p>Nilai Ujian (Numerik)</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="import-library">
+<h1>Import Library<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h1>
+<p>Library yang digunakan:</p>
+<ul class="simple">
+<li><p>pandas → membaca data</p></li>
+<li><p>numpy → operasi numerik</p></li>
+<li><p>scikit-learn → menghitung distance</p></li>
+<li><p>scipy → distance tambahan</p></li>
+<li><p>gower → distance untuk data campuran</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openpyxl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workbook</span>
+
+<span class="c1"># ===== CONFIG =====</span>
+<span class="n">INPUT_XLSX</span> <span class="o">=</span> <span class="s2">&quot;Contoh_Data_Tipe_Data.xlsx&quot;</span>
+<span class="n">COL_NAME</span>   <span class="o">=</span> <span class="s2">&quot;Nama (Nominal)&quot;</span>
+<span class="n">COL_CITY</span>   <span class="o">=</span> <span class="s2">&quot;Kota (Nominal)&quot;</span>
+<span class="n">COL_GENDER</span> <span class="o">=</span> <span class="s2">&quot;Jenis Kelamin (Biner)&quot;</span>
+<span class="n">COL_EDU</span>    <span class="o">=</span> <span class="s2">&quot;Tingkat Pendidikan (Ordinal)&quot;</span>
+<span class="n">COL_SCORE</span>  <span class="o">=</span> <span class="s2">&quot;Nilai Ujian (Numerik)&quot;</span>
+<span class="n">COL_STAT</span>   <span class="o">=</span> <span class="s2">&quot;Status Kelulusan (Biner)&quot;</span>
+
+<span class="n">EDU_MAP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;SMA&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D3&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;S1&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;S2&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+
+<span class="c1"># ===== LOAD =====</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">INPUT_XLSX</span><span class="p">)</span>
+<span class="n">names</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_NAME</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pairwise_matrix</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">idx_of</span><span class="p">(</span><span class="n">person_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">COL_NAME</span><span class="p">]</span> <span class="o">==</span> <span class="n">person_name</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">matches</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nama &#39;</span><span class="si">{</span><span class="n">person_name</span><span class="si">}</span><span class="s2">&#39; tidak ditemukan.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># encoding dasar</span>
+<span class="n">city</span>   <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_CITY</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">gender</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_GENDER</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s2">&quot;L&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>         <span class="c1"># symmetric</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_STAT</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>                                 <span class="c1"># asymmetric 0/1</span>
+
+<span class="n">edu_rank</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_EDU</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">EDU_MAP</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>                 <span class="c1"># ordinal -&gt; rank</span>
+<span class="n">score</span>    <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_SCORE</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>                             <span class="c1"># numeric raw</span>
+
+<span class="c1"># normalisasi utk mixed (min-max)</span>
+<span class="n">score_min</span><span class="p">,</span> <span class="n">score_max</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">score</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">score_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">score</span> <span class="o">-</span> <span class="n">score_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">score_max</span> <span class="o">-</span> <span class="n">score_min</span><span class="p">)</span>
+
+<span class="n">edu_min</span><span class="p">,</span> <span class="n">edu_max</span> <span class="o">=</span> <span class="n">edu_rank</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">edu_rank</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">edu_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">edu_rank</span> <span class="o">-</span> <span class="n">edu_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">edu_max</span> <span class="o">-</span> <span class="n">edu_min</span><span class="p">)</span>
+
+<span class="c1"># pasangan contoh</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">idx_of</span><span class="p">(</span><span class="s2">&quot;Andi&quot;</span><span class="p">)</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">idx_of</span><span class="p">(</span><span class="s2">&quot;Budi&quot;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID (Numerik)</th>
+      <th>Nama (Nominal)</th>
+      <th>Jenis Kelamin (Biner)</th>
+      <th>Tingkat Pendidikan (Ordinal)</th>
+      <th>Nilai Ujian (Numerik)</th>
+      <th>Status Kelulusan (Biner)</th>
+      <th>Kota (Nominal)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Andi</td>
+      <td>L</td>
+      <td>SMA</td>
+      <td>78</td>
+      <td>1</td>
+      <td>Jakarta</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Budi</td>
+      <td>L</td>
+      <td>S1</td>
+      <td>85</td>
+      <td>1</td>
+      <td>Bandung</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Citra</td>
+      <td>P</td>
+      <td>SMA</td>
+      <td>65</td>
+      <td>0</td>
+      <td>Surabaya</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Dewi</td>
+      <td>P</td>
+      <td>S2</td>
+      <td>90</td>
+      <td>1</td>
+      <td>Yogyakarta</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Eko</td>
+      <td>L</td>
+      <td>D3</td>
+      <td>70</td>
+      <td>1</td>
+      <td>Medan</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metode-1-simple-matching-nominal">
+<h1>Metode 1 — Simple Matching (Nominal)<a class="headerlink" href="#metode-1-simple-matching-nominal" title="Link to this heading">#</a></h1>
+<p>untuk simpel matching bisa dihitung menggunakan hamming distance</p>
+<p>Untuk atribut nominal (misal <code class="docutils literal notranslate"><span class="pre">Kota</span></code>)</p>
+<p>jarak per atribut:
+<span class="math notranslate nohighlight">\(
+d_{ij}(f)=
+\begin{cases}
+0, &amp; x_{if}=x_{jf}\\
+1, &amp; x_{if}\neq x_{jf}
+\end{cases}
+\)</span></p>
+<p>Output: matriks jarak nominal (0/1).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">d_simple_matching_nominal</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="n">city</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">city</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">else</span> <span class="mf">1.0</span>
+
+<span class="n">M_nominal_city</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_simple_matching_nominal</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh Andi vs Budi (Nominal Kota):&quot;</span><span class="p">,</span> <span class="n">d_simple_matching_nominal</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+<span class="n">M_nominal_city</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">6</span><span class="p">,</span> <span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contoh Andi vs Budi (Nominal Kota): 1.0
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Andi</th>
+      <th>Budi</th>
+      <th>Citra</th>
+      <th>Dewi</th>
+      <th>Eko</th>
+      <th>Fajar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Andi</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Budi</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Citra</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Dewi</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Eko</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Fajar</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metode-2-binary-symmetric-simple-matching">
+<h1>Metode 2 — Binary Symmetric (Simple Matching)<a class="headerlink" href="#metode-2-binary-symmetric-simple-matching" title="Link to this heading">#</a></h1>
+<p>menggunakan hamming distance
+Untuk biner simetris (mis. <code class="docutils literal notranslate"><span class="pre">Jenis</span> <span class="pre">Kelamin</span></code>), 0 dan 1 sama-sama penting → gunakan simple matching:</p>
+<ul class="simple">
+<li><p>sama → 0</p></li>
+<li><p>beda → 1</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">d_binary_symmetric</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="n">gender</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">gender</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">else</span> <span class="mf">1.0</span>
+
+<span class="n">M_binary_symmetric</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_binary_symmetric</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh Andi vs Budi (Binary Symmetric JK):&quot;</span><span class="p">,</span> <span class="n">d_binary_symmetric</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+<span class="n">M_binary_symmetric</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">6</span><span class="p">,</span> <span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contoh Andi vs Budi (Binary Symmetric JK): 0.0
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Andi</th>
+      <th>Budi</th>
+      <th>Citra</th>
+      <th>Dewi</th>
+      <th>Eko</th>
+      <th>Fajar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Andi</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Budi</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Citra</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Dewi</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Eko</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Fajar</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metode-3-binary-asymmetric-jaccard">
+<h1>Metode 3 — Binary Asymmetric (Jaccard)<a class="headerlink" href="#metode-3-binary-asymmetric-jaccard" title="Link to this heading">#</a></h1>
+<p>Untuk biner asymmetric, pasangan (0,0) diabaikan.</p>
+<p>Jaccard similarity:</p>
+<p><span class="math notranslate nohighlight">\(
+J=\frac{a}{a+b+c}
+\)</span></p>
+<p>Jaccard dissimilarity (jarak):</p>
+<p><span class="math notranslate nohighlight">\(
+d_J=1-J=\frac{b+c}{a+b+c}
+\)</span></p>
+<p>Pada implementasi 1 atribut biner:</p>
+<ul class="simple">
+<li><p>(0,0) → kontribusi 0 (diabaikan)</p></li>
+<li><p>(1,1) → 0</p></li>
+<li><p>beda → 1</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">d_jaccard_asymmetric</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="n">xi</span><span class="p">,</span> <span class="n">xj</span> <span class="o">=</span> <span class="n">status</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">xj</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="n">xj</span> <span class="k">else</span> <span class="mf">1.0</span>
+
+<span class="n">M_jaccard_asymmetric</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_jaccard_asymmetric</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh Andi vs Budi (Jaccard Status):&quot;</span><span class="p">,</span> <span class="n">d_jaccard_asymmetric</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+<span class="n">M_jaccard_asymmetric</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">6</span><span class="p">,</span> <span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contoh Andi vs Budi (Jaccard Status): 0.0
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Andi</th>
+      <th>Budi</th>
+      <th>Citra</th>
+      <th>Dewi</th>
+      <th>Eko</th>
+      <th>Fajar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Andi</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Budi</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Citra</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Dewi</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Eko</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Fajar</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metode-4-ordinal-ranking-0-1-interval-scaled-distance">
+<h1>Metode 4 — Ordinal: Ranking → [0,1] → Interval-scaled distance<a class="headerlink" href="#metode-4-ordinal-ranking-0-1-interval-scaled-distance" title="Link to this heading">#</a></h1>
+<p>Atribut ordinal diubah ke ranking <span class="math notranslate nohighlight">\(r_{if}\)</span> , lalu dipetakan ke [0,1]:</p>
+<p><span class="math notranslate nohighlight">\(
+z_{if}=\frac{r_{if}-1}{M_f-1}
+\)</span></p>
+<p>Jarak ordinal (1 atribut):</p>
+<p><span class="math notranslate nohighlight">\(
+d_{ij}=|z_{if}-z_{jf}|
+\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">d_ordinal_scaled</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">edu_norm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">edu_norm</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+
+<span class="n">M_ordinal</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_ordinal_scaled</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rank Andi, Budi:&quot;</span><span class="p">,</span> <span class="n">edu_rank</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">edu_rank</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;z Andi, z Budi:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">edu_norm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">4</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">edu_norm</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh Andi vs Budi (Ordinal Pendidikan):&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">d_ordinal_scaled</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">M_ordinal</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">6</span><span class="p">,</span> <span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rank Andi, Budi: 1.0 3.0
+z Andi, z Budi: 0.0 0.6667
+Contoh Andi vs Budi (Ordinal Pendidikan): 0.666667
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Andi</th>
+      <th>Budi</th>
+      <th>Citra</th>
+      <th>Dewi</th>
+      <th>Eko</th>
+      <th>Fajar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Andi</th>
+      <td>0.000000</td>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>Budi</th>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Citra</th>
+      <td>0.000000</td>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>Dewi</th>
+      <td>1.000000</td>
+      <td>0.333333</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th>Eko</th>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th>Fajar</th>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>0.333333</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metode-5-minkowski-distance-numerik">
+<h1>Metode 5 — Minkowski Distance (Numerik)<a class="headerlink" href="#metode-5-minkowski-distance-numerik" title="Link to this heading">#</a></h1>
+<p>Minkowski:</p>
+<p><span class="math notranslate nohighlight">\(
+d(i,j)=\left(\sum_{f=1}^{p}|x_{if}-x_{jf}|^h\right)^{1/h}
+\)</span></p>
+<p>Special cases:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h=1\)</span> : Manhattan (L1)</p></li>
+<li><p><span class="math notranslate nohighlight">\(h=2\)</span> : Euclidean (L2)</p></li>
+<li><p><span class="math notranslate nohighlight">\(h\to\infty\)</span> : Supremum (L∞)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_num</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">minkowski</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">X_num</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">**</span> <span class="n">h</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">h</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">d_manhattan</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">minkowski</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">d_euclidean</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">minkowski</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">d_supremum</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">X_num</span><span class="p">[</span><span class="n">j</span><span class="p">])))</span>
+
+<span class="n">M_manhattan</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_manhattan</span><span class="p">)</span>
+<span class="n">M_euclidean</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_euclidean</span><span class="p">)</span>
+<span class="n">M_supremum</span>  <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_supremum</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh Andi vs Budi (|78-85|):&quot;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">score</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Manhattan:&quot;</span><span class="p">,</span> <span class="n">d_manhattan</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Euclidean:&quot;</span><span class="p">,</span> <span class="n">d_euclidean</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Supremum :&quot;</span><span class="p">,</span> <span class="n">d_supremum</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+
+<span class="n">M_euclidean</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">6</span><span class="p">,</span> <span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contoh Andi vs Budi (|78-85|): 7.0
+Manhattan: 7.0
+Euclidean: 7.0
+Supremum : 7.0
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Andi</th>
+      <th>Budi</th>
+      <th>Citra</th>
+      <th>Dewi</th>
+      <th>Eko</th>
+      <th>Fajar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Andi</th>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>13.0</td>
+      <td>12.0</td>
+      <td>8.0</td>
+      <td>23.0</td>
+    </tr>
+    <tr>
+      <th>Budi</th>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>20.0</td>
+      <td>5.0</td>
+      <td>15.0</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th>Citra</th>
+      <td>13.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>25.0</td>
+      <td>5.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>Dewi</th>
+      <td>12.0</td>
+      <td>5.0</td>
+      <td>25.0</td>
+      <td>0.0</td>
+      <td>20.0</td>
+      <td>35.0</td>
+    </tr>
+    <tr>
+      <th>Eko</th>
+      <td>8.0</td>
+      <td>15.0</td>
+      <td>5.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>15.0</td>
+    </tr>
+    <tr>
+      <th>Fajar</th>
+      <td>23.0</td>
+      <td>30.0</td>
+      <td>10.0</td>
+      <td>35.0</td>
+      <td>15.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metode-6-cosine-similarity-dan-jarak-1-cos">
+<h1>Metode 6 — Cosine Similarity (dan jarak 1-cos)<a class="headerlink" href="#metode-6-cosine-similarity-dan-jarak-1-cos" title="Link to this heading">#</a></h1>
+<p>Cosine similarity:</p>
+<p><span class="math notranslate nohighlight">\(
+\cos(d_1,d_2)=\frac{d_1\cdot d_2}{\|d_1\|\|d_2\|}
+\)</span>s</p>
+<p>Jika butuh jarak cosine:
+<span class="math notranslate nohighlight">\(
+d_{\cos}=1-\cos(d_1,d_2)
+\)</span>s</p>
+<p>Di sini vektor fitur dipakai: <span class="math notranslate nohighlight">\([NilaiUjian, RankPendidikan]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">score</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">edu_rank</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)])</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cosine_similarity</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">V</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">V</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">denom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">denom</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">/</span> <span class="n">denom</span><span class="p">)</span>
+
+<span class="n">M_cosine_similarity</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">cosine_similarity</span><span class="p">)</span>
+<span class="n">M_cosine_distance</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">M_cosine_similarity</span>
+
+<span class="n">cos_ab</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cosine(Andi,Budi):&quot;</span><span class="p">,</span> <span class="n">cos_ab</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d_cos = 1-cos:&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">cos_ab</span><span class="p">)</span>
+
+<span class="n">M_cosine_similarity</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">6</span><span class="p">,</span> <span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cosine(Andi,Budi): 0.9997477923684138
+d_cos = 1-cos: 0.00025220763158617654
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Andi</th>
+      <th>Budi</th>
+      <th>Citra</th>
+      <th>Dewi</th>
+      <th>Eko</th>
+      <th>Fajar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Andi</th>
+      <td>1.000000</td>
+      <td>0.999748</td>
+      <td>0.999997</td>
+      <td>0.999501</td>
+      <td>0.999876</td>
+      <td>0.999132</td>
+    </tr>
+    <tr>
+      <th>Budi</th>
+      <td>0.999748</td>
+      <td>1.000000</td>
+      <td>0.999802</td>
+      <td>0.999958</td>
+      <td>0.999977</td>
+      <td>0.999815</td>
+    </tr>
+    <tr>
+      <th>Citra</th>
+      <td>0.999997</td>
+      <td>0.999802</td>
+      <td>1.000000</td>
+      <td>0.999579</td>
+      <td>0.999913</td>
+      <td>0.999235</td>
+    </tr>
+    <tr>
+      <th>Dewi</th>
+      <td>0.999501</td>
+      <td>0.999958</td>
+      <td>0.999579</td>
+      <td>1.000000</td>
+      <td>0.999874</td>
+      <td>0.999949</td>
+    </tr>
+    <tr>
+      <th>Eko</th>
+      <td>0.999876</td>
+      <td>0.999977</td>
+      <td>0.999913</td>
+      <td>0.999874</td>
+      <td>1.000000</td>
+      <td>0.999664</td>
+    </tr>
+    <tr>
+      <th>Fajar</th>
+      <td>0.999132</td>
+      <td>0.999815</td>
+      <td>0.999235</td>
+      <td>0.999949</td>
+      <td>0.999664</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metode-7-atribut-campuran-mixed">
+<h1>Metode 7 — Atribut Campuran (Mixed)<a class="headerlink" href="#metode-7-atribut-campuran-mixed" title="Link to this heading">#</a></h1>
+<p>Gabungan per-atribut (pembobotan):</p>
+<p><span class="math notranslate nohighlight">\(
+d(i,j)=\frac{\sum_{f=1}^{p} w_f\,d_{ij}(f)}{\sum_{f=1}^{p} w_f}
+\)</span></p>
+<p>Aturan <span class="math notranslate nohighlight">\(d_{ij}(f)\)</span>:</p>
+<ul class="simple">
+<li><p>nominal/biner: 0 jika sama, 1 jika beda</p></li>
+<li><p>numerik: normalisasi → selisih absolut</p></li>
+<li><p>ordinal: ranking → [0,1] → selisih absolut</p></li>
+<li><p>binary asymmetric (Jaccard): pasangan (0,0) diabaikan</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MIXED_WEIGHTS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;numeric&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;ordinal&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;nominal&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;bin_sym&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;bin_asym&quot;</span><span class="p">:</span> <span class="mf">1.0</span>
+<span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">d_mixed</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">MIXED_WEIGHTS</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">wsum</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># numeric (normalized)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;numeric&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">score_norm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">score_norm</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;numeric&quot;</span><span class="p">]</span>
+
+    <span class="c1"># ordinal (scaled)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;ordinal&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">edu_norm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">edu_norm</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;ordinal&quot;</span><span class="p">]</span>
+
+    <span class="c1"># nominal city</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;nominal&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.0</span> <span class="k">if</span> <span class="n">city</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">city</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">else</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;nominal&quot;</span><span class="p">]</span>
+
+    <span class="c1"># binary symmetric gender</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;bin_sym&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.0</span> <span class="k">if</span> <span class="n">gender</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">gender</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">else</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;bin_sym&quot;</span><span class="p">]</span>
+
+    <span class="c1"># binary asymmetric status (abaikan 0-0)</span>
+    <span class="n">xi</span><span class="p">,</span> <span class="n">xj</span> <span class="o">=</span> <span class="n">status</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">xi</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">xj</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;bin_asym&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.0</span> <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="n">xj</span> <span class="k">else</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="s2">&quot;bin_asym&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="n">wsum</span> <span class="k">if</span> <span class="n">wsum</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+
+<span class="n">M_mixed</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_mixed</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh Andi vs Budi (Mixed):&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">d_mixed</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">),</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">M_mixed</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">6</span><span class="p">,</span> <span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contoh Andi vs Budi (Mixed): 0.364444
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Andi</th>
+      <th>Budi</th>
+      <th>Citra</th>
+      <th>Dewi</th>
+      <th>Eko</th>
+      <th>Fajar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Andi</th>
+      <td>0.000000</td>
+      <td>0.364444</td>
+      <td>0.657778</td>
+      <td>0.653333</td>
+      <td>0.302222</td>
+      <td>0.635556</td>
+    </tr>
+    <tr>
+      <th>Budi</th>
+      <td>0.364444</td>
+      <td>0.000000</td>
+      <td>0.822222</td>
+      <td>0.488889</td>
+      <td>0.333333</td>
+      <td>0.533333</td>
+    </tr>
+    <tr>
+      <th>Citra</th>
+      <td>0.657778</td>
+      <td>0.822222</td>
+      <td>0.000000</td>
+      <td>0.711111</td>
+      <td>0.688889</td>
+      <td>0.722222</td>
+    </tr>
+    <tr>
+      <th>Dewi</th>
+      <td>0.653333</td>
+      <td>0.488889</td>
+      <td>0.711111</td>
+      <td>0.000000</td>
+      <td>0.622222</td>
+      <td>0.822222</td>
+    </tr>
+    <tr>
+      <th>Eko</th>
+      <td>0.302222</td>
+      <td>0.333333</td>
+      <td>0.688889</td>
+      <td>0.622222</td>
+      <td>0.000000</td>
+      <td>0.533333</td>
+    </tr>
+    <tr>
+      <th>Fajar</th>
+      <td>0.635556</td>
+      <td>0.533333</td>
+      <td>0.722222</td>
+      <td>0.822222</td>
+      <td>0.533333</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openpyxl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workbook</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># 0) CONFIG</span>
+<span class="c1"># =========================</span>
+<span class="n">INPUT_XLSX</span> <span class="o">=</span> <span class="s2">&quot;Contoh_Data_Tipe_Data.xlsx&quot;</span>   <span class="c1"># sesuaikan path jika perlu</span>
+<span class="n">OUTPUT_XLSX</span> <span class="o">=</span> <span class="s2">&quot;Matriks_Jarak_Semua_Metode_PPT.xlsx&quot;</span>
+
+<span class="c1"># Nama kolom (sesuai file Excel Anda)</span>
+<span class="n">COL_NAME</span>   <span class="o">=</span> <span class="s2">&quot;Nama (Nominal)&quot;</span>
+<span class="n">COL_CITY</span>   <span class="o">=</span> <span class="s2">&quot;Kota (Nominal)&quot;</span>                <span class="c1"># nominal</span>
+<span class="n">COL_GENDER</span> <span class="o">=</span> <span class="s2">&quot;Jenis Kelamin (Biner)&quot;</span>          <span class="c1"># binary symmetric</span>
+<span class="n">COL_EDU</span>    <span class="o">=</span> <span class="s2">&quot;Tingkat Pendidikan (Ordinal)&quot;</span>   <span class="c1"># ordinal</span>
+<span class="n">COL_SCORE</span>  <span class="o">=</span> <span class="s2">&quot;Nilai Ujian (Numerik)&quot;</span>          <span class="c1"># numeric</span>
+<span class="n">COL_STAT</span>   <span class="o">=</span> <span class="s2">&quot;Status Kelulusan (Biner)&quot;</span>       <span class="c1"># binary asymmetric</span>
+
+<span class="c1"># Mapping ordinal (contoh pendidikan)</span>
+<span class="n">EDU_MAP</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;SMA&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D3&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;S1&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;S2&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+
+<span class="c1"># Bobot mixed (bisa diubah)</span>
+<span class="n">MIXED_WEIGHTS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;numeric&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;ordinal&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;nominal&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;bin_sym&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;bin_asym&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># 1) LOAD DATA</span>
+<span class="c1"># =========================</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">INPUT_XLSX</span><span class="p">)</span>
+<span class="n">names</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_NAME</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># 2) UTILITIES</span>
+<span class="c1"># =========================</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pairwise_matrix</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Buat matriks n x n untuk fungsi func(i,j).&quot;&quot;&quot;</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tambahkan dataframe ke worksheet Excel.&quot;&quot;&quot;</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">create_sheet</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">)</span>
+    <span class="n">ws</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="s2">&quot;&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataframe</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">ws</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">idx</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">idx_of</span><span class="p">(</span><span class="n">person_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ambil index row berdasarkan nama.&quot;&quot;&quot;</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">COL_NAME</span><span class="p">]</span> <span class="o">==</span> <span class="n">person_name</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">matches</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nama &#39;</span><span class="si">{</span><span class="n">person_name</span><span class="si">}</span><span class="s2">&#39; tidak ditemukan.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># 3) PREPARE ENCODINGS</span>
+<span class="c1"># =========================</span>
+<span class="c1"># Binary symmetric: encode gender</span>
+<span class="n">gender</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_GENDER</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s2">&quot;L&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Binary asymmetric: status</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_STAT</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Ordinal: education ranking</span>
+<span class="n">edu_rank</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_EDU</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">EDU_MAP</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">edu_min</span><span class="p">,</span> <span class="n">edu_max</span> <span class="o">=</span> <span class="n">edu_rank</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">edu_rank</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">edu_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">edu_rank</span> <span class="o">-</span> <span class="n">edu_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">edu_max</span> <span class="o">-</span> <span class="n">edu_min</span><span class="p">)</span>  <span class="c1"># scaling [0,1]</span>
+
+<span class="c1"># Numeric: score (raw &amp; normalized)</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_SCORE</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">score_min</span><span class="p">,</span> <span class="n">score_max</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">score</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">score_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">score</span> <span class="o">-</span> <span class="n">score_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">score_max</span> <span class="o">-</span> <span class="n">score_min</span><span class="p">)</span>  <span class="c1"># scaling [0,1]</span>
+
+<span class="n">city</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">COL_CITY</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># 4) METHODS</span>
+<span class="c1"># =========================</span>
+
+<span class="c1"># 4.1 Simple Matching for nominal (per-atribut)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">d_simple_matching_nominal</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="n">city</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">city</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">else</span> <span class="mf">1.0</span>
+
+<span class="n">M_nominal_city</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_simple_matching_nominal</span><span class="p">)</span>
+
+<span class="c1"># 4.2 Binary symmetric (simple matching)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">d_binary_symmetric</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="n">gender</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">gender</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">else</span> <span class="mf">1.0</span>
+
+<span class="n">M_binary_symmetric</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_binary_symmetric</span><span class="p">)</span>
+
+<span class="c1"># 4.3 Binary asymmetric (Jaccard dissimilarity) - per-atribut</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">d_jaccard_asymmetric</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="n">xi</span><span class="p">,</span> <span class="n">xj</span> <span class="o">=</span> <span class="n">status</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">xj</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>  <span class="c1"># diabaikan -&gt; kontribusi 0 untuk atribut ini</span>
+    <span class="k">return</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="n">xj</span> <span class="k">else</span> <span class="mf">1.0</span>
+
+<span class="n">M_jaccard_asymmetric</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_jaccard_asymmetric</span><span class="p">)</span>
+
+<span class="c1"># 4.4 Minkowski distances (numeric) – pakai skor RAW (sesuai definisi Minkowski)</span>
+<span class="n">X_num</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">minkowski</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">X_num</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">**</span> <span class="n">h</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">h</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">d_manhattan</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>  <span class="c1"># h=1</span>
+    <span class="k">return</span> <span class="n">minkowski</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">d_euclidean</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>  <span class="c1"># h=2</span>
+    <span class="k">return</span> <span class="n">minkowski</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">d_supremum</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>   <span class="c1"># L∞</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X_num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">X_num</span><span class="p">[</span><span class="n">j</span><span class="p">])))</span>
+
+<span class="n">M_manhattan</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_manhattan</span><span class="p">)</span>
+<span class="n">M_euclidean</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_euclidean</span><span class="p">)</span>
+<span class="n">M_supremum</span>  <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_supremum</span><span class="p">)</span>
+
+<span class="c1"># 4.5 Cosine similarity (contoh: vektor = [score, edu_rank])</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">score</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">edu_rank</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)])</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cosine_similarity</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">V</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">V</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">denom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">denom</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="o">/</span> <span class="n">denom</span><span class="p">)</span>
+
+<span class="n">M_cosine_similarity</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">cosine_similarity</span><span class="p">)</span>
+<span class="n">M_cosine_distance</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">M_cosine_similarity</span>  <span class="c1"># jika perlu jarak cosine</span>
+
+<span class="c1"># 4.6 Mixed attribute distance (gabungan)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">d_mixed</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">MIXED_WEIGHTS</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">wsum</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># numeric (normalized)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;numeric&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">score_norm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">score_norm</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;numeric&quot;</span><span class="p">]</span>
+
+    <span class="c1"># ordinal (scaled [0,1])</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;ordinal&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">edu_norm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">edu_norm</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;ordinal&quot;</span><span class="p">]</span>
+
+    <span class="c1"># nominal (simple matching)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;nominal&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.0</span> <span class="k">if</span> <span class="n">city</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">city</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">else</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;nominal&quot;</span><span class="p">]</span>
+
+    <span class="c1"># binary symmetric (simple matching)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;bin_sym&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.0</span> <span class="k">if</span> <span class="n">gender</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">gender</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">else</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;bin_sym&quot;</span><span class="p">]</span>
+
+    <span class="c1"># binary asymmetric (Jaccard) - abaikan (0,0)</span>
+    <span class="n">xi</span><span class="p">,</span> <span class="n">xj</span> <span class="o">=</span> <span class="n">status</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">status</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">xi</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">xj</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;bin_asym&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.0</span> <span class="k">if</span> <span class="n">xi</span> <span class="o">==</span> <span class="n">xj</span> <span class="k">else</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">wsum</span>  <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="s2">&quot;bin_asym&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="n">wsum</span> <span class="k">if</span> <span class="n">wsum</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+
+<span class="n">M_mixed</span> <span class="o">=</span> <span class="n">pairwise_matrix</span><span class="p">(</span><span class="n">d_mixed</span><span class="p">)</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># 5) EXPORT ALL MATRICES TO EXCEL</span>
+<span class="c1"># =========================</span>
+<span class="n">wb</span> <span class="o">=</span> <span class="n">Workbook</span><span class="p">()</span>
+<span class="c1"># hapus sheet default</span>
+<span class="n">wb</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">wb</span><span class="o">.</span><span class="n">active</span><span class="p">)</span>
+
+<span class="n">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="s2">&quot;Simple_Matching_Nominal&quot;</span><span class="p">,</span> <span class="n">M_nominal_city</span><span class="p">)</span>
+<span class="n">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="s2">&quot;Binary_Symmetric&quot;</span><span class="p">,</span> <span class="n">M_binary_symmetric</span><span class="p">)</span>
+<span class="n">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="s2">&quot;Jaccard_Asymmetric&quot;</span><span class="p">,</span> <span class="n">M_jaccard_asymmetric</span><span class="p">)</span>
+<span class="n">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="s2">&quot;Manhattan_L1&quot;</span><span class="p">,</span> <span class="n">M_manhattan</span><span class="p">)</span>
+<span class="n">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="s2">&quot;Euclidean_L2&quot;</span><span class="p">,</span> <span class="n">M_euclidean</span><span class="p">)</span>
+<span class="n">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="s2">&quot;Supremum_Linf&quot;</span><span class="p">,</span> <span class="n">M_supremum</span><span class="p">)</span>
+<span class="n">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="s2">&quot;Cosine_Similarity&quot;</span><span class="p">,</span> <span class="n">M_cosine_similarity</span><span class="p">)</span>
+<span class="n">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="s2">&quot;Cosine_Distance_1-cos&quot;</span><span class="p">,</span> <span class="n">M_cosine_distance</span><span class="p">)</span>
+<span class="n">add_sheet</span><span class="p">(</span><span class="n">wb</span><span class="p">,</span> <span class="s2">&quot;Mixed_Attribute&quot;</span><span class="p">,</span> <span class="n">M_mixed</span><span class="p">)</span>
+
+<span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">OUTPUT_XLSX</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Excel hasil semua metode tersimpan: </span><span class="si">{</span><span class="n">OUTPUT_XLSX</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># 6) STEP-BY-STEP CONTOH: Andi vs Budi</span>
+<span class="c1"># =========================</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">idx_of</span><span class="p">(</span><span class="s2">&quot;Andi&quot;</span><span class="p">)</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">idx_of</span><span class="p">(</span><span class="s2">&quot;Budi&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== STEP-BY-STEP: Andi vs Budi ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Andi:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">[</span><span class="n">COL_GENDER</span><span class="p">,</span> <span class="n">COL_EDU</span><span class="p">,</span> <span class="n">COL_SCORE</span><span class="p">,</span> <span class="n">COL_STAT</span><span class="p">,</span> <span class="n">COL_CITY</span><span class="p">]]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Budi:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">[</span><span class="n">COL_GENDER</span><span class="p">,</span> <span class="n">COL_EDU</span><span class="p">,</span> <span class="n">COL_SCORE</span><span class="p">,</span> <span class="n">COL_STAT</span><span class="p">,</span> <span class="n">COL_CITY</span><span class="p">]]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+
+<span class="c1"># (1) Nominal</span>
+<span class="n">d_city</span> <span class="o">=</span> <span class="n">d_simple_matching_nominal</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">(1) Simple Matching Nominal (Kota): d = </span><span class="si">{</span><span class="n">d_city</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># (2) Binary symmetric</span>
+<span class="n">d_gen</span> <span class="o">=</span> <span class="n">d_binary_symmetric</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(2) Binary Symmetric (Jenis Kelamin): d = </span><span class="si">{</span><span class="n">d_gen</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># (3) Jaccard asymmetric</span>
+<span class="n">d_stat</span> <span class="o">=</span> <span class="n">d_jaccard_asymmetric</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(3) Jaccard Asymmetric (Status Kelulusan): d = </span><span class="si">{</span><span class="n">d_stat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># (4) Ordinal scaled [0,1]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">(4) Ordinal (Pendidikan) -&gt; ranking -&gt; [0,1]&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Rank Andi=</span><span class="si">{</span><span class="n">edu_rank</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">, Rank Budi=</span><span class="si">{</span><span class="n">edu_rank</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    z Andi=</span><span class="si">{</span><span class="n">edu_norm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, z Budi=</span><span class="si">{</span><span class="n">edu_norm</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">d_edu</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">edu_norm</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">edu_norm</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    d = |z_i - z_j| = </span><span class="si">{</span><span class="n">d_edu</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># (5) Numeric Minkowski (raw)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">(5) Numeric (Nilai Ujian) Minkowski (RAW)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    |78-85| = </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">score</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Manhattan (h=1) = </span><span class="si">{</span><span class="n">d_manhattan</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Euclidean (h=2) = </span><span class="si">{</span><span class="n">d_euclidean</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Supremum (L∞)   = </span><span class="si">{</span><span class="n">d_supremum</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># (6) Cosine similarity &amp; distance</span>
+<span class="n">cos_sim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">(6) Cosine Similarity (vektor [Nilai, RankPendidikan])&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    cos = </span><span class="si">{</span><span class="n">cos_sim</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    d_cos = 1 - cos = </span><span class="si">{</span><span class="mi">1</span><span class="o">-</span><span class="n">cos_sim</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># (7) Mixed attribute</span>
+<span class="n">mix</span> <span class="o">=</span> <span class="n">d_mixed</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">(7) Mixed Attribute (gabungan)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    d_mixed = </span><span class="si">{</span><span class="n">mix</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Excel hasil semua metode tersimpan: Matriks_Jarak_Semua_Metode_PPT.xlsx
+
+=== STEP-BY-STEP: Andi vs Budi ===
+Andi: {&#39;Jenis Kelamin (Biner)&#39;: &#39;L&#39;, &#39;Tingkat Pendidikan (Ordinal)&#39;: &#39;SMA&#39;, &#39;Nilai Ujian (Numerik)&#39;: 78, &#39;Status Kelulusan (Biner)&#39;: 1, &#39;Kota (Nominal)&#39;: &#39;Jakarta&#39;}
+Budi: {&#39;Jenis Kelamin (Biner)&#39;: &#39;L&#39;, &#39;Tingkat Pendidikan (Ordinal)&#39;: &#39;S1&#39;, &#39;Nilai Ujian (Numerik)&#39;: 85, &#39;Status Kelulusan (Biner)&#39;: 1, &#39;Kota (Nominal)&#39;: &#39;Bandung&#39;}
+
+(1) Simple Matching Nominal (Kota): d = 1.0
+(2) Binary Symmetric (Jenis Kelamin): d = 0.0
+(3) Jaccard Asymmetric (Status Kelulusan): d = 0.0
+
+(4) Ordinal (Pendidikan) -&gt; ranking -&gt; [0,1]
+    Rank Andi=1.0, Rank Budi=3.0
+    z Andi=0.0000, z Budi=0.6667
+    d = |z_i - z_j| = 0.6667
+
+(5) Numeric (Nilai Ujian) Minkowski (RAW)
+    |78-85| = 7.0
+    Manhattan (h=1) = 7.0
+    Euclidean (h=2) = 7.0
+    Supremum (L∞)   = 7.0
+
+(6) Cosine Similarity (vektor [Nilai, RankPendidikan])
+    cos = 0.999748
+    d_cos = 1 - cos = 0.000252
+
+(7) Mixed Attribute (gabungan)
+    d_mixed = 0.364444
+</pre></div>
+</div>
+</div>
+</div>
+<section id="visualisasi-dari-orange-menggunakan-hamming-distance">
+<h2>visualisasi dari orange menggunakan hamming distance<a class="headerlink" href="#visualisasi-dari-orange-menggunakan-hamming-distance" title="Link to this heading">#</a></h2>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/nilai_ujian.png"><img alt="_images/nilai_ujian.png" src="_images/nilai_ujian.png" style="width: 600px;" /></a>
+</figure>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="explorasi_data_iris.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">LAPORAN EKSPLORASI DATASET IRIS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pertemuan3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Student</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-load-data-persiapan-kolom">Setup: Load data &amp; persiapan kolom</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-1-simple-matching-nominal">Metode 1 — Simple Matching (Nominal)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-2-binary-symmetric-simple-matching">Metode 2 — Binary Symmetric (Simple Matching)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-3-binary-asymmetric-jaccard">Metode 3 — Binary Asymmetric (Jaccard)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-4-ordinal-ranking-0-1-interval-scaled-distance">Metode 4 — Ordinal: Ranking → [0,1] → Interval-scaled distance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-5-minkowski-distance-numerik">Metode 5 — Minkowski Distance (Numerik)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-6-cosine-similarity-dan-jarak-1-cos">Metode 6 — Cosine Similarity (dan jarak 1-cos)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-7-atribut-campuran-mixed">Metode 7 — Atribut Campuran (Mixed)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-dari-orange-menggunakan-hamming-distance">visualisasi dari orange menggunakan hamming distance</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Achmad Jihad Fisabilillah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

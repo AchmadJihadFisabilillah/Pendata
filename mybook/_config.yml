@@ -8,7 +8,7 @@ logo: foto.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: auto
+  execute_notebooks: force
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -30,7 +30,19 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+  use_edit_page_button: false
 
 html:
   extra_css:
     - _static/custom.css
+
+sphinx:
+  config:
+    html_show_code: true
+
+launch_buttons:
+  notebook_interface: jupyterlab
+
+html:
+  togglebutton:
+    enabled: true
