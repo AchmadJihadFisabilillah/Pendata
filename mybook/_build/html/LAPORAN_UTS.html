@@ -1,0 +1,1015 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Klasifikasi Kesuburan Tanah Menggunakan K-Nearest Neighbors (KNN) &#8212; My NOTEBOOK</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'LAPORAN_UTS';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Perhitungan WKNN" href="wknn_perhitungan.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.png" class="logo__image only-light" alt="My NOTEBOOK - Home"/>
+    <script>document.write(`<img src="_static/foto.png" class="logo__image only-dark" alt="My NOTEBOOK - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    WELCOME TO MY NOTEBOOK
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_mining.html">CRISP-DM (Cross Industry Standard Process for Data Mining)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bisnis_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">DATA UNDERSTANDING</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="explorasi_data.html">Eksplorasi Data Dataset Iris</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_iris.html">PENDAHULUAN</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="explorasi_data_iris.html">LAPORAN EKSPLORASI DATASET IRIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jarak_ukur.html">Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3.html">Data Student</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_1.html">Distance in Iris Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_2.html">Distance in Student Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_3.html">Prediksi Nilai Usia yang Hilang Menggunakan KNN</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="preprocessing_data.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="normalisasi_data.html">Normalisasi Data</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="knn.html">K-Nearest Neighbor (KNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_misingvalue.html">KNN Missing Value</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="wknn.html">Weighted K-Nearest Neighbor(WKNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wknn_perhitungan.html">Perhitungan WKNN</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Klasifikasi Kesuburan Tanah Menggunakan K-Nearest Neighbors (KNN)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/LAPORAN_UTS.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Klasifikasi Kesuburan Tanah Menggunakan K-Nearest Neighbors (KNN)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-dataset">Penjelasan Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-orange">Workflow Orange</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-import-data">Langkah 1 - Import Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-menampilkan-data-dengan-data-table">Langkah 2 - Menampilkan Data dengan Data Table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-menentukan-features-target-dan-meta">Langkah 3 - Menentukan Features, Target, dan Meta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-menangani-missing-value-dengan-impute">Langkah 4 - Menangani Missing Value dengan Impute</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-mengubah-data-kategorikal-dengan-continuize">Langkah 5 - Mengubah Data Kategorikal dengan Continuize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-normalisasi-data-dengan-preprocess">Langkah 6 - Normalisasi Data dengan Preprocess</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-7-pembuatan-model-knn">Langkah 7 - Pembuatan Model KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-8-evaluasi-model-dengan-test-score">Langkah 8 - Evaluasi Model dengan Test &amp; Score</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-9-confusion-matrix">Langkah 9 - Confusion Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-10-reduksi-dimensi-dengan-pca">Langkah 10 - Reduksi Dimensi dengan PCA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-11-visualisasi-data-dengan-scatter-plot">Langkah 11 - Visualisasi Data dengan Scatter Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-distribusi-data">Analisis Distribusi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan-fitur-dengan-box-plot">Analisis Perbandingan Fitur dengan Box Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-rumus-yang-digunakan">Rumus-rumus yang Digunakan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance">1. Euclidean Distance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">2. Accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">3. Precision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">4. Recall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-score">5. F1-Score</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">Analisis Hasil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-kesuburan-tanah-menggunakan-k-nearest-neighbors-knn">
+<h1>Klasifikasi Kesuburan Tanah Menggunakan K-Nearest Neighbors (KNN)<a class="headerlink" href="#klasifikasi-kesuburan-tanah-menggunakan-k-nearest-neighbors-knn" title="Link to this heading">#</a></h1>
+<p>Notebook ini membahas proses klasifikasi dataset kesuburan tanah menggunakan algoritma <strong>K-Nearest Neighbors (KNN)</strong>.<br />
+Tahapan yang dilakukan meliputi:</p>
+<ol class="arabic simple">
+<li><p>Memahami dataset</p></li>
+<li><p>Preprocessing data</p></li>
+<li><p>Pembangunan model KNN</p></li>
+<li><p>Evaluasi model menggunakan Accuracy, Precision, Recall, dan F1-Score</p></li>
+<li><p>Analisis hasil dan visualisasi data</p></li>
+</ol>
+<section id="tujuan">
+<h2>Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<p>Tujuan dari analisis ini adalah:</p>
+<ul class="simple">
+<li><p>Melakukan preprocessing pada dataset kesuburan tanah</p></li>
+<li><p>Membangun model klasifikasi menggunakan algoritma KNN</p></li>
+<li><p>Mengukur performa model menggunakan metrik evaluasi</p></li>
+<li><p>Menjelaskan alasan hasil klasifikasi yang diperoleh</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;tugas_iris/data/dataset_kesuburan_tanah_missing.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>pH Tanah</th>
+      <th>N Total (%)</th>
+      <th>P Tersedia (ppm)</th>
+      <th>K Tersedia (meq/100g)</th>
+      <th>C Organik (%)</th>
+      <th>KTK (meq/100g)</th>
+      <th>Kejenuhan Basa (%)</th>
+      <th>Tekstur Tanah</th>
+      <th>Kadar Air (%)</th>
+      <th>Bulk Density (g/cm³)</th>
+      <th>Label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>8.93</td>
+      <td>0.183</td>
+      <td>5.35</td>
+      <td>0.124</td>
+      <td>0.68</td>
+      <td>6.18</td>
+      <td>31.86</td>
+      <td>Debu</td>
+      <td>60.49</td>
+      <td>1.767</td>
+      <td>Tidak Subur</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>6.24</td>
+      <td>0.420</td>
+      <td>54.32</td>
+      <td>0.554</td>
+      <td>4.87</td>
+      <td>33.46</td>
+      <td>82.77</td>
+      <td>Lempung Berpasir</td>
+      <td>35.97</td>
+      <td>0.960</td>
+      <td>Subur</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>4.82</td>
+      <td>NaN</td>
+      <td>13.44</td>
+      <td>0.257</td>
+      <td>NaN</td>
+      <td>14.79</td>
+      <td>55.45</td>
+      <td>Debu</td>
+      <td>11.48</td>
+      <td>1.851</td>
+      <td>Tidak Subur</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7.34</td>
+      <td>0.269</td>
+      <td>17.46</td>
+      <td>0.542</td>
+      <td>2.49</td>
+      <td>35.57</td>
+      <td>62.09</td>
+      <td>Lempung Berliat</td>
+      <td>37.54</td>
+      <td>1.017</td>
+      <td>Subur</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>3.77</td>
+      <td>0.144</td>
+      <td>1.15</td>
+      <td>0.106</td>
+      <td>0.62</td>
+      <td>18.97</td>
+      <td>10.85</td>
+      <td>Liat</td>
+      <td>6.97</td>
+      <td>1.766</td>
+      <td>Tidak Subur</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ukuran dataset:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Nama kolom:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Info dataset:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah missing value per kolom:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ukuran dataset: (2000, 12)
+
+Nama kolom:
+[&#39;ID&#39;, &#39;pH Tanah&#39;, &#39;N Total (%)&#39;, &#39;P Tersedia (ppm)&#39;, &#39;K Tersedia (meq/100g)&#39;, &#39;C Organik (%)&#39;, &#39;KTK (meq/100g)&#39;, &#39;Kejenuhan Basa (%)&#39;, &#39;Tekstur Tanah&#39;, &#39;Kadar Air (%)&#39;, &#39;Bulk Density (g/cm³)&#39;, &#39;Label&#39;]
+
+Info dataset:
+&lt;class &#39;pandas.DataFrame&#39;&gt;
+RangeIndex: 2000 entries, 0 to 1999
+Data columns (total 12 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   ID                     2000 non-null   int64  
+ 1   pH Tanah               2000 non-null   float64
+ 2   N Total (%)            1840 non-null   float64
+ 3   P Tersedia (ppm)       1760 non-null   float64
+ 4   K Tersedia (meq/100g)  1860 non-null   float64
+ 5   C Organik (%)          1800 non-null   float64
+ 6   KTK (meq/100g)         2000 non-null   float64
+ 7   Kejenuhan Basa (%)     2000 non-null   float64
+ 8   Tekstur Tanah          1900 non-null   str    
+ 9   Kadar Air (%)          1820 non-null   float64
+ 10  Bulk Density (g/cm³)   1880 non-null   float64
+ 11  Label                  2000 non-null   str    
+dtypes: float64(9), int64(1), str(2)
+memory usage: 187.6 KB
+None
+
+Jumlah missing value per kolom:
+ID                         0
+pH Tanah                   0
+N Total (%)              160
+P Tersedia (ppm)         240
+K Tersedia (meq/100g)    140
+C Organik (%)            200
+KTK (meq/100g)             0
+Kejenuhan Basa (%)         0
+Tekstur Tanah            100
+Kadar Air (%)            180
+Bulk Density (g/cm³)     120
+Label                      0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="penjelasan-dataset">
+<h2>Penjelasan Dataset<a class="headerlink" href="#penjelasan-dataset" title="Link to this heading">#</a></h2>
+<p>Dataset berisi data kesuburan tanah dengan target klasifikasi:</p>
+<ul class="simple">
+<li><p><strong>Subur</strong></p></li>
+<li><p><strong>Tidak Subur</strong></p></li>
+</ul>
+<p>Atribut yang digunakan meliputi:</p>
+<ul class="simple">
+<li><p>pH Tanah</p></li>
+<li><p>N Total (%)</p></li>
+<li><p>P Tersedia (ppm)</p></li>
+<li><p>K Tersedia (meq/100g)</p></li>
+<li><p>C Organik (%)</p></li>
+<li><p>KTK (meq/100g)</p></li>
+<li><p>Kejenuhan Basa (%)</p></li>
+<li><p>Tekstur Tanah</p></li>
+<li><p>Kadar Air (%)</p></li>
+<li><p>Bulk Density (g/cm³)</p></li>
+</ul>
+<p>Kolom <strong>ID</strong> hanya digunakan sebagai identitas data dan tidak dipakai dalam proses klasifikasi.
+Kolom <strong>Label</strong> digunakan sebagai target.</p>
+</section>
+<section id="workflow-orange">
+<h2>Workflow Orange<a class="headerlink" href="#workflow-orange" title="Link to this heading">#</a></h2>
+<p>Berikut adalah workflow yang digunakan dalam Orange Data Mining:</p>
+<p><img alt="Workflow Orange" src="_images/workflow_orange.png" /></p>
+<p>Workflow yang digunakan:</p>
+<ul class="simple">
+<li><p>CSV File Import</p></li>
+<li><p>Data Table</p></li>
+<li><p>Select Columns</p></li>
+<li><p>Impute</p></li>
+<li><p>Continuize</p></li>
+<li><p>Preprocess</p></li>
+<li><p>kNN</p></li>
+<li><p>Test &amp; Score</p></li>
+<li><p>Confusion Matrix</p></li>
+<li><p>PCA</p></li>
+<li><p>Scatter Plot</p></li>
+<li><p>Distributions</p></li>
+<li><p>Box Plot</p></li>
+</ul>
+</section>
+<section id="langkah-1-import-data">
+<h2>Langkah 1 - Import Data<a class="headerlink" href="#langkah-1-import-data" title="Link to this heading">#</a></h2>
+<p>Pada tahap awal, dataset dimasukkan ke Orange menggunakan widget <strong>CSV File Import</strong>.<br />
+Widget ini berfungsi untuk membaca file dataset agar dapat diproses pada tahap berikutnya.</p>
+<p><img alt="CSV Import" src="_images/csv_import.png" /></p>
+</section>
+<section id="langkah-2-menampilkan-data-dengan-data-table">
+<h2>Langkah 2 - Menampilkan Data dengan Data Table<a class="headerlink" href="#langkah-2-menampilkan-data-dengan-data-table" title="Link to this heading">#</a></h2>
+<p>Setelah data diimpor, data ditampilkan menggunakan widget <strong>Data Table</strong> untuk memastikan bahwa:</p>
+<ul class="simple">
+<li><p>dataset berhasil dibaca</p></li>
+<li><p>nama kolom sesuai</p></li>
+<li><p>target tersedia</p></li>
+<li><p>terdapat missing value</p></li>
+</ul>
+<p><img alt="Data Table" src="_images/data_table.png" /></p>
+</section>
+<section id="langkah-3-menentukan-features-target-dan-meta">
+<h2>Langkah 3 - Menentukan Features, Target, dan Meta<a class="headerlink" href="#langkah-3-menentukan-features-target-dan-meta" title="Link to this heading">#</a></h2>
+<p>Pada widget <strong>Select Columns</strong>, dilakukan pengaturan:</p>
+<ul class="simple">
+<li><p><strong>Features</strong>: seluruh atribut tanah</p></li>
+<li><p><strong>Target</strong>: Label</p></li>
+<li><p><strong>Meta</strong>: ID</p></li>
+</ul>
+<p>Alasan tahap ini penting adalah agar model mengetahui kolom mana yang menjadi input dan kolom mana yang menjadi target prediksi.</p>
+<p><img alt="Select Columns" src="_images/select_columns.png" /></p>
+<p>Hasil pengaturan:</p>
+<ul class="simple">
+<li><p>Label ditempatkan sebagai target</p></li>
+<li><p>ID ditempatkan sebagai meta</p></li>
+<li><p>Atribut lainnya digunakan sebagai fitur</p></li>
+</ul>
+</section>
+<section id="langkah-4-menangani-missing-value-dengan-impute">
+<h2>Langkah 4 - Menangani Missing Value dengan Impute<a class="headerlink" href="#langkah-4-menangani-missing-value-dengan-impute" title="Link to this heading">#</a></h2>
+<p>Dataset memiliki missing value, sehingga perlu dilakukan imputasi.<br />
+Pada widget <strong>Impute</strong>, digunakan metode:</p>
+<ul class="simple">
+<li><p><strong>Average</strong> untuk atribut numerik</p></li>
+<li><p><strong>Most frequent</strong> untuk atribut kategorikal</p></li>
+</ul>
+<p>Alasan penggunaan metode ini adalah agar seluruh data menjadi lengkap dan dapat digunakan oleh algoritma KNN.</p>
+<p><img alt="Impute" src="_images/impute.png" /></p>
+</section>
+<section id="langkah-5-mengubah-data-kategorikal-dengan-continuize">
+<h2>Langkah 5 - Mengubah Data Kategorikal dengan Continuize<a class="headerlink" href="#langkah-5-mengubah-data-kategorikal-dengan-continuize" title="Link to this heading">#</a></h2>
+<p>Atribut <strong>Tekstur Tanah</strong> merupakan atribut kategorikal.<br />
+Karena KNN bekerja dengan data numerik, atribut kategorikal perlu diubah ke bentuk numerik menggunakan widget <strong>Continuize</strong>.</p>
+<p><img alt="Continuize" src="_images/continuize.png" /></p>
+</section>
+<section id="langkah-6-normalisasi-data-dengan-preprocess">
+<h2>Langkah 6 - Normalisasi Data dengan Preprocess<a class="headerlink" href="#langkah-6-normalisasi-data-dengan-preprocess" title="Link to this heading">#</a></h2>
+<p>Pada widget <strong>Preprocess</strong>, dilakukan normalisasi fitur.<br />
+Tahap ini penting karena algoritma KNN menghitung jarak antar data, sehingga semua fitur perlu berada dalam skala yang sebanding.</p>
+<p>Normalisasi membantu mencegah fitur dengan rentang nilai besar menjadi terlalu dominan.</p>
+<p><img alt="Preprocess" src="_images/preprocess.png" /></p>
+</section>
+<section id="langkah-7-pembuatan-model-knn">
+<h2>Langkah 7 - Pembuatan Model KNN<a class="headerlink" href="#langkah-7-pembuatan-model-knn" title="Link to this heading">#</a></h2>
+<p>Setelah preprocessing selesai, data digunakan untuk membangun model klasifikasi dengan widget <strong>kNN</strong>.</p>
+<p>KNN bekerja dengan cara:</p>
+<ol class="arabic simple">
+<li><p>Menghitung jarak data baru ke seluruh data latih</p></li>
+<li><p>Mengambil sejumlah tetangga terdekat</p></li>
+<li><p>Menentukan kelas berdasarkan mayoritas tetangga tersebut</p></li>
+</ol>
+<p><img alt="kNN" src="_images/knn.png" /></p>
+</section>
+<section id="langkah-8-evaluasi-model-dengan-test-score">
+<h2>Langkah 8 - Evaluasi Model dengan Test &amp; Score<a class="headerlink" href="#langkah-8-evaluasi-model-dengan-test-score" title="Link to this heading">#</a></h2>
+<p>Evaluasi model dilakukan menggunakan widget <strong>Test &amp; Score</strong> dengan metode <strong>Cross Validation</strong>.</p>
+<p>Metode ini digunakan agar evaluasi lebih adil, karena model diuji pada data yang tidak selalu sama dengan data latih.</p>
+<p><img alt="Test and Score" src="_images/test_and_score.png" /></p>
+<p>Hasil evaluasi yang diperoleh:</p>
+<ul class="simple">
+<li><p>Accuracy = 1.000</p></li>
+<li><p>Precision = 1.000</p></li>
+<li><p>Recall = 1.000</p></li>
+<li><p>F1-Score = 1.000</p></li>
+</ul>
+</section>
+<section id="langkah-9-confusion-matrix">
+<h2>Langkah 9 - Confusion Matrix<a class="headerlink" href="#langkah-9-confusion-matrix" title="Link to this heading">#</a></h2>
+<p>Widget <strong>Confusion Matrix</strong> digunakan untuk melihat detail prediksi model.<br />
+Dari hasil confusion matrix, seluruh data berhasil diklasifikasikan dengan benar, sehingga tidak terdapat kesalahan prediksi.</p>
+<p><img alt="Confusion Matrix" src="_images/confusion_matrix.png" /></p>
+</section>
+<section id="langkah-10-reduksi-dimensi-dengan-pca">
+<h2>Langkah 10 - Reduksi Dimensi dengan PCA<a class="headerlink" href="#langkah-10-reduksi-dimensi-dengan-pca" title="Link to this heading">#</a></h2>
+<p>Widget <strong>PCA</strong> digunakan untuk mereduksi dimensi data menjadi dua komponen utama agar data dapat divisualisasikan dalam bentuk dua dimensi.</p>
+<p><img alt="PCA" src="_images/pca.png" /></p>
+</section>
+<section id="langkah-11-visualisasi-data-dengan-scatter-plot">
+<h2>Langkah 11 - Visualisasi Data dengan Scatter Plot<a class="headerlink" href="#langkah-11-visualisasi-data-dengan-scatter-plot" title="Link to this heading">#</a></h2>
+<p>Hasil PCA divisualisasikan menggunakan <strong>Scatter Plot</strong> dengan pewarnaan berdasarkan label kelas.</p>
+<p>Visualisasi ini digunakan untuk melihat apakah data kelas <strong>Subur</strong> dan <strong>Tidak Subur</strong> saling overlap atau terpisah.</p>
+<p><img alt="Scatter Plot" src="_images/scatter_plot.png" /></p>
+<p>Berdasarkan visualisasi, terlihat bahwa kedua kelas terpisah dengan sangat jelas.<br />
+Hal ini menjelaskan mengapa model KNN memperoleh akurasi yang sangat tinggi.</p>
+</section>
+<section id="analisis-distribusi-data">
+<h2>Analisis Distribusi Data<a class="headerlink" href="#analisis-distribusi-data" title="Link to this heading">#</a></h2>
+<p>Widget <strong>Distributions</strong> digunakan untuk melihat distribusi setiap atribut pada dataset.
+Distribusi ini membantu memahami pola penyebaran data sebelum dan sesudah preprocessing.</p>
+<p><img alt="Distributions" src="_images/distributions.png" /></p>
+</section>
+<section id="analisis-perbandingan-fitur-dengan-box-plot">
+<h2>Analisis Perbandingan Fitur dengan Box Plot<a class="headerlink" href="#analisis-perbandingan-fitur-dengan-box-plot" title="Link to this heading">#</a></h2>
+<p>Widget <strong>Box Plot</strong> digunakan untuk membandingkan nilai fitur pada masing-masing kelas.<br />
+Dari box plot dapat dilihat apakah terdapat perbedaan distribusi fitur antara kelas <strong>Subur</strong> dan <strong>Tidak Subur</strong>.</p>
+<p><img alt="Box Plot" src="_images/box_plot.png" /></p>
+</section>
+<section id="rumus-rumus-yang-digunakan">
+<h2>Rumus-rumus yang Digunakan<a class="headerlink" href="#rumus-rumus-yang-digunakan" title="Link to this heading">#</a></h2>
+<section id="euclidean-distance">
+<h3>1. Euclidean Distance<a class="headerlink" href="#euclidean-distance" title="Link to this heading">#</a></h3>
+<p>Rumus jarak Euclidean pada KNN:</p>
+<p>[
+d(x, y) = \sqrt{\sum_{i=1}^{n}(x_i - y_i)^2}
+]</p>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>(x) = data pertama</p></li>
+<li><p>(y) = data kedua</p></li>
+<li><p>(n) = jumlah fitur</p></li>
+</ul>
+</section>
+<section id="accuracy">
+<h3>2. Accuracy<a class="headerlink" href="#accuracy" title="Link to this heading">#</a></h3>
+<p>[
+Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+]</p>
+</section>
+<section id="precision">
+<h3>3. Precision<a class="headerlink" href="#precision" title="Link to this heading">#</a></h3>
+<p>[
+Precision = \frac{TP}{TP + FP}
+]</p>
+</section>
+<section id="recall">
+<h3>4. Recall<a class="headerlink" href="#recall" title="Link to this heading">#</a></h3>
+<p>[
+Recall = \frac{TP}{TP + FN}
+]</p>
+</section>
+<section id="f1-score">
+<h3>5. F1-Score<a class="headerlink" href="#f1-score" title="Link to this heading">#</a></h3>
+<p>[
+F1 = \frac{2 \times Precision \times Recall}{Precision + Recall}
+]</p>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>TP = True Positive</p></li>
+<li><p>TN = True Negative</p></li>
+<li><p>FP = False Positive</p></li>
+<li><p>FN = False Negative</p></li>
+</ul>
+</section>
+</section>
+<section id="analisis-hasil">
+<h2>Analisis Hasil<a class="headerlink" href="#analisis-hasil" title="Link to this heading">#</a></h2>
+<p>Model KNN menghasilkan nilai Accuracy, Precision, Recall, dan F1-Score sebesar <strong>1.000</strong>.</p>
+<p>Hal ini menunjukkan bahwa model mampu mengklasifikasikan seluruh data dengan benar.<br />
+Berdasarkan visualisasi PCA dan Scatter Plot, terlihat bahwa data kelas <strong>Subur</strong> dan <strong>Tidak Subur</strong> terpisah secara jelas tanpa overlap yang berarti.</p>
+<p>Kondisi ini menyebabkan KNN dapat dengan mudah menentukan kelas berdasarkan tetangga terdekat.</p>
+</section>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan proses analisis yang telah dilakukan, dapat disimpulkan bahwa:</p>
+<ol class="arabic simple">
+<li><p>Dataset berhasil diproses melalui tahapan preprocessing yang meliputi imputasi, transformasi atribut kategorikal, dan normalisasi.</p></li>
+<li><p>Model KNN berhasil dibangun menggunakan Orange Data Mining.</p></li>
+<li><p>Hasil evaluasi menunjukkan performa sempurna dengan:</p>
+<ul class="simple">
+<li><p>Accuracy = 1.000</p></li>
+<li><p>Precision = 1.000</p></li>
+<li><p>Recall = 1.000</p></li>
+<li><p>F1-Score = 1.000</p></li>
+</ul>
+</li>
+<li><p>Visualisasi menunjukkan bahwa kedua kelas terpisah secara jelas, sehingga model KNN sangat mudah melakukan klasifikasi.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="wknn_perhitungan.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Perhitungan WKNN</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-dataset">Penjelasan Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-orange">Workflow Orange</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-import-data">Langkah 1 - Import Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-menampilkan-data-dengan-data-table">Langkah 2 - Menampilkan Data dengan Data Table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-menentukan-features-target-dan-meta">Langkah 3 - Menentukan Features, Target, dan Meta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-menangani-missing-value-dengan-impute">Langkah 4 - Menangani Missing Value dengan Impute</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-mengubah-data-kategorikal-dengan-continuize">Langkah 5 - Mengubah Data Kategorikal dengan Continuize</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-normalisasi-data-dengan-preprocess">Langkah 6 - Normalisasi Data dengan Preprocess</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-7-pembuatan-model-knn">Langkah 7 - Pembuatan Model KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-8-evaluasi-model-dengan-test-score">Langkah 8 - Evaluasi Model dengan Test &amp; Score</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-9-confusion-matrix">Langkah 9 - Confusion Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-10-reduksi-dimensi-dengan-pca">Langkah 10 - Reduksi Dimensi dengan PCA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-11-visualisasi-data-dengan-scatter-plot">Langkah 11 - Visualisasi Data dengan Scatter Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-distribusi-data">Analisis Distribusi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan-fitur-dengan-box-plot">Analisis Perbandingan Fitur dengan Box Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-rumus-yang-digunakan">Rumus-rumus yang Digunakan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance">1. Euclidean Distance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy">2. Accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">3. Precision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">4. Recall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-score">5. F1-Score</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">Analisis Hasil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Achmad Jihad Fisabilillah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

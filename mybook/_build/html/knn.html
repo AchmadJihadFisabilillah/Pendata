@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>K-Nearest Neighbor (KNN) &#8212; My NOTEBOOK</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'knn';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="KNN Missing Value" href="knn_misingvalue.html" />
+    <link rel="prev" title="Normalisasi Data" href="normalisasi_data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.png" class="logo__image only-light" alt="My NOTEBOOK - Home"/>
+    <script>document.write(`<img src="_static/foto.png" class="logo__image only-dark" alt="My NOTEBOOK - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    WELCOME TO MY NOTEBOOK
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_mining.html">CRISP-DM (Cross Industry Standard Process for Data Mining)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bisnis_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">DATA UNDERSTANDING</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="explorasi_data.html">Eksplorasi Data Dataset Iris</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_iris.html">PENDAHULUAN</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="explorasi_data_iris.html">LAPORAN EKSPLORASI DATASET IRIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jarak_ukur.html">Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3.html">Data Student</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_1.html">Distance in Iris Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_2.html">Distance in Student Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_3.html">Prediksi Nilai Usia yang Hilang Menggunakan KNN</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="preprocessing_data.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="normalisasi_data.html">Normalisasi Data</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">K-Nearest Neighbor (KNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_misingvalue.html">KNN Missing Value</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="wknn.html">Weighted K-Nearest Neighbor(WKNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wknn_perhitungan.html">Perhitungan WKNN</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="LAPORAN_UTS.html">Klasifikasi Kesuburan Tanah Menggunakan K-Nearest Neighbors (KNN)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/knn.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>K-Nearest Neighbor (KNN)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. K-Nearest Neighbor (KNN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-algoritma-knn">2. Cara Kerja Algoritma KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance">3. Euclidean Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value-pada-data-numerik">4. Missing Value pada Data Numerik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-imputation">5. KNN Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mengisi-missing-value-menggunakan-knn">6. Langkah-Langkah Mengisi Missing Value Menggunakan KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-knn-dalam-imputasi-data">7. Kelebihan dan Kekurangan KNN dalam Imputasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan">Kelebihan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan">Kekurangan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">8. Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="k-nearest-neighbor-knn">
+<h1>K-Nearest Neighbor (KNN)<a class="headerlink" href="#k-nearest-neighbor-knn" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>1. K-Nearest Neighbor (KNN)<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><strong>K-Nearest Neighbor (KNN)</strong> merupakan salah satu algoritma dalam <em>machine learning</em> yang digunakan untuk melakukan <strong>klasifikasi</strong> maupun <strong>regresi</strong>. Algoritma ini bekerja berdasarkan prinsip bahwa suatu data baru dapat ditentukan nilai atau kelasnya dengan melihat <strong>data lain yang memiliki kemiripan paling tinggi</strong>.</p>
+<p>Kemiripan antar data ditentukan berdasarkan <strong>jarak antar data</strong> pada ruang fitur (<em>feature space</em>). Data yang memiliki jarak paling kecil dianggap sebagai <strong>tetangga terdekat</strong>.</p>
+<p>Huruf <strong>K</strong> pada KNN menunjukkan <strong>jumlah tetangga terdekat</strong> yang digunakan dalam proses pengambilan keputusan.</p>
+</section>
+<hr class="docutils" />
+<section id="cara-kerja-algoritma-knn">
+<h2>2. Cara Kerja Algoritma KNN<a class="headerlink" href="#cara-kerja-algoritma-knn" title="Link to this heading">#</a></h2>
+<p>Secara umum, langkah-langkah kerja algoritma KNN adalah sebagai berikut:</p>
+<ol class="arabic simple">
+<li><p>Menentukan nilai <strong>K</strong> (jumlah tetangga terdekat).</p></li>
+<li><p>Menghitung jarak antara data yang akan diprediksi dengan seluruh data dalam dataset.</p></li>
+<li><p>Mengurutkan hasil perhitungan jarak dari yang <strong>terkecil hingga terbesar</strong>.</p></li>
+<li><p>Memilih <strong>K data dengan jarak paling dekat</strong>.</p></li>
+<li><p>Menentukan hasil prediksi:</p>
+<ul class="simple">
+<li><p>Pada <strong>klasifikasi</strong>, menggunakan voting dari kelas yang paling banyak muncul.</p></li>
+<li><p>Pada <strong>regresi</strong>, menggunakan rata-rata nilai dari K tetangga.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="euclidean-distance">
+<h2>3. Euclidean Distance<a class="headerlink" href="#euclidean-distance" title="Link to this heading">#</a></h2>
+<p>Untuk mengukur tingkat kedekatan antar data dalam algoritma KNN, salah satu metode yang paling sering digunakan adalah <strong>Euclidean Distance</strong>.</p>
+<p>Euclidean Distance merupakan metode pengukuran jarak antara dua titik dalam ruang berdimensi banyak (<em>multidimensional space</em>). Metode ini menghitung jarak garis lurus antara dua titik berdasarkan nilai atributnya.</p>
+<p>Rumus Euclidean Distance:</p>
+<p><span class="math notranslate nohighlight">\(
+d(p,q) = \sqrt{\sum_{i=1}^{n} (p_i - q_i)^2}
+\)</span></p>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>(d(p,q)) = jarak antara data (p) dan (q)</p></li>
+<li><p>(p_i) = nilai atribut ke-i pada data (p)</p></li>
+<li><p>(q_i) = nilai atribut ke-i pada data (q)</p></li>
+<li><p>(n) = jumlah atribut</p></li>
+</ul>
+<p>Semakin kecil nilai jarak yang dihasilkan, maka semakin tinggi tingkat kemiripan antara kedua data tersebut.</p>
+</section>
+<hr class="docutils" />
+<section id="missing-value-pada-data-numerik">
+<h2>4. Missing Value pada Data Numerik<a class="headerlink" href="#missing-value-pada-data-numerik" title="Link to this heading">#</a></h2>
+<p>Dalam proses analisis data, sering ditemukan <strong>missing value</strong> atau nilai yang hilang pada suatu atribut. Missing value dapat terjadi karena berbagai faktor, seperti kesalahan pencatatan data, data yang tidak lengkap, atau kesalahan pada proses pengumpulan data.</p>
+<p>Jika tidak ditangani dengan baik, missing value dapat mempengaruhi hasil analisis dan menurunkan kualitas model yang dihasilkan.</p>
+<p>Salah satu metode yang dapat digunakan untuk mengatasi missing value pada data numerik adalah <strong>KNN Imputation</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="knn-imputation">
+<h2>5. KNN Imputation<a class="headerlink" href="#knn-imputation" title="Link to this heading">#</a></h2>
+<p><strong>KNN Imputation</strong> adalah teknik pengisian missing value dengan memanfaatkan konsep tetangga terdekat dari algoritma KNN. Prinsip dari metode ini adalah bahwa nilai yang hilang pada suatu data dapat diperkirakan berdasarkan nilai dari data lain yang memiliki karakteristik paling mirip.</p>
+<p>Kemiripan antar data dihitung menggunakan metode pengukuran jarak, salah satunya adalah <strong>Euclidean Distance</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="langkah-langkah-mengisi-missing-value-menggunakan-knn">
+<h2>6. Langkah-Langkah Mengisi Missing Value Menggunakan KNN<a class="headerlink" href="#langkah-langkah-mengisi-missing-value-menggunakan-knn" title="Link to this heading">#</a></h2>
+<p>Proses pengisian missing value menggunakan KNN dilakukan melalui beberapa tahapan berikut:</p>
+<ol class="arabic simple">
+<li><p>Mengidentifikasi data yang memiliki <strong>missing value</strong> pada atribut tertentu.</p></li>
+<li><p>Menghitung <strong>jarak Euclidean</strong> antara data yang memiliki missing value dengan data lain yang tidak memiliki nilai kosong.</p></li>
+<li><p>Mengurutkan data berdasarkan <strong>jarak terkecil</strong>.</p></li>
+<li><p>Memilih sejumlah <strong>K data dengan jarak terdekat</strong> sebagai tetangga.</p></li>
+<li><p>Menghitung nilai estimasi dengan menggunakan <strong>rata-rata nilai atribut</strong> dari tetangga terdekat tersebut.</p></li>
+<li><p>Menggunakan hasil perhitungan tersebut untuk <strong>menggantikan missing value</strong> pada data.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="kelebihan-dan-kekurangan-knn-dalam-imputasi-data">
+<h2>7. Kelebihan dan Kekurangan KNN dalam Imputasi Data<a class="headerlink" href="#kelebihan-dan-kekurangan-knn-dalam-imputasi-data" title="Link to this heading">#</a></h2>
+<section id="kelebihan">
+<h3>Kelebihan<a class="headerlink" href="#kelebihan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Metode yang sederhana dan mudah dipahami.</p></li>
+<li><p>Dapat menghasilkan estimasi nilai yang cukup akurat karena menggunakan data yang paling mirip.</p></li>
+<li><p>Dapat diterapkan pada berbagai jenis dataset numerik.</p></li>
+</ul>
+</section>
+<section id="kekurangan">
+<h3>Kekurangan<a class="headerlink" href="#kekurangan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Proses perhitungan jarak dapat menjadi lambat jika dataset berukuran besar.</p></li>
+<li><p>Sensitif terhadap perbedaan skala data sehingga sering memerlukan proses normalisasi.</p></li>
+<li><p>Pemilihan nilai <strong>K</strong> dapat mempengaruhi hasil imputasi yang diperoleh.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>8. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>K-Nearest Neighbor merupakan algoritma berbasis kedekatan data yang banyak digunakan dalam berbagai bidang analisis data. Dengan menggunakan metode pengukuran jarak seperti <strong>Euclidean Distance</strong>, algoritma ini tidak hanya dapat digunakan untuk klasifikasi dan regresi, tetapi juga untuk menangani <strong>missing value pada data numerik</strong> melalui teknik <strong>KNN Imputation</strong>. Metode ini bekerja dengan mencari data yang paling mirip dan menggunakan nilai dari tetangga terdekat tersebut untuk memperkirakan nilai yang hilang.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="normalisasi_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Normalisasi Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="knn_misingvalue.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">KNN Missing Value</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. K-Nearest Neighbor (KNN)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-algoritma-knn">2. Cara Kerja Algoritma KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean-distance">3. Euclidean Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value-pada-data-numerik">4. Missing Value pada Data Numerik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-imputation">5. KNN Imputation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mengisi-missing-value-menggunakan-knn">6. Langkah-Langkah Mengisi Missing Value Menggunakan KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-knn-dalam-imputasi-data">7. Kelebihan dan Kekurangan KNN dalam Imputasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan">Kelebihan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan">Kekurangan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">8. Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Achmad Jihad Fisabilillah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
