@@ -1,0 +1,23 @@
+format: jb-book
+root: intro
+
+chapters:
+  - file: data_mining  
+  - file: bisnis_understanding  
+  - file: data_understanding  
+  - file: explorasi_data 
+  - file: data_iris  
+  - file: explorasi_data_iris  
+  - file: jarak_ukur  
+  - file: pertemuan3  
+  - file: pertemuan3_1
+  - file: pertemuan3_2
+  - file: pertemuan3_3  
+  - file: preprocessing_data  
+  - file: normalisasi_data  
+  - file: knn  
+  - file: knn_misingvalue  
+  - file: wknn  
+  - file: wknn_perhitungan  
+  - file: LAPORAN_UTS   
+  - file: naive_bayes 
