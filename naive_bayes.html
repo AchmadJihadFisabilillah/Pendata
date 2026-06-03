@@ -272,6 +272,10 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="regresi-linear.html">Analisa Data Menggunakan Regresi Linier (A)</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">jarak-ukur</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jarak_ukur_bulaksetro_selesai.html">Prediksi Kadar NO₂ Bulak Setro Menggunakan K-Nearest Neighbor (KNN)</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -587,22 +591,22 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.DataFrame&#39;&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 9957 entries, 0 to 9956
 Data columns (total 9 columns):
  #   Column       Non-Null Count  Dtype  
 ---  ------       --------------  -----  
- 0   title        9957 non-null   str    
- 1   year         9430 non-null   str    
- 2   certificate  6504 non-null   str    
- 3   duration     7921 non-null   str    
- 4   genre        9884 non-null   str    
+ 0   title        9957 non-null   object 
+ 1   year         9430 non-null   object 
+ 2   certificate  6504 non-null   object 
+ 3   duration     7921 non-null   object 
+ 4   genre        9884 non-null   object 
  5   rating       8784 non-null   float64
- 6   description  9957 non-null   str    
- 7   stars        9957 non-null   str    
- 8   votes        8784 non-null   str    
-dtypes: float64(1), str(8)
-memory usage: 700.2 KB
+ 6   description  9957 non-null   object 
+ 7   stars        9957 non-null   object 
+ 8   votes        8784 non-null   object 
+dtypes: float64(1), object(8)
+memory usage: 700.2+ KB
 </pre></div>
 </div>
 </div>
@@ -688,27 +692,27 @@ dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>Cobra Kai&nbsp;&nbsp;Action, Comedy, Drama</td>
+      <td>Cobra Kai  Action, Comedy, Drama</td>
       <td>Action</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>The Crown&nbsp;&nbsp;Biography, Drama, History</td>
+      <td>The Crown  Biography, Drama, History</td>
       <td>Biography</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Better Call Saul&nbsp;&nbsp;Crime, Drama</td>
+      <td>Better Call Saul  Crime, Drama</td>
       <td>Crime</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Devil in Ohio&nbsp;&nbsp;Drama, Horror, Mystery</td>
+      <td>Devil in Ohio  Drama, Horror, Mystery</td>
       <td>Drama</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Cyberpunk: Edgerunners&nbsp;&nbsp;Animation, Action, Adv...</td>
+      <td>Cyberpunk: Edgerunners  Animation, Action, Adv...</td>
       <td>Animation</td>
     </tr>
   </tbody>
@@ -752,8 +756,8 @@ Mystery          31
 Talk-Show        28
 Sci-Fi           20
 Western           7
-Sport             6
 News              6
+Sport             6
 Musical           5
 History           4
 Film-Noir         1
@@ -807,8 +811,8 @@ Mystery          31
 Talk-Show        28
 Sci-Fi           20
 Western           7
-Sport             6
 News              6
+Sport             6
 Musical           5
 History           4
 Name: count, dtype: int64
@@ -839,7 +843,7 @@ Name: count, dtype: int64
 2                       Better Call Saul  Crime, Drama
 3                Devil in Ohio  Drama, Horror, Mystery
 4    Cyberpunk: Edgerunners  Animation, Action, Adv...
-Name: text, dtype: str
+Name: text, dtype: object
 
 Contoh target:
 0       Action
@@ -847,7 +851,7 @@ Contoh target:
 2        Crime
 3        Drama
 4    Animation
-Name: primary_genre, dtype: str
+Name: primary_genre, dtype: object
 </pre></div>
 </div>
 </div>
@@ -903,8 +907,8 @@ Mystery          25
 Talk-Show        22
 Sci-Fi           16
 Western           6
-News              5
 Sport             5
+News              5
 Musical           4
 History           3
 Name: count, dtype: int64
@@ -2256,61 +2260,61 @@ weighted avg       0.75      0.78      0.74      1977
   <tbody>
     <tr>
       <th>0</th>
-      <td>Celeste &amp; Jesse Forever&nbsp;&nbsp;Comedy, Drama, Romance</td>
+      <td>Celeste &amp; Jesse Forever  Comedy, Drama, Romance</td>
       <td>Comedy</td>
       <td>Comedy</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Your Life Is a Joke&nbsp;&nbsp;Documentary, Comedy</td>
+      <td>Your Life Is a Joke  Documentary, Comedy</td>
       <td>Documentary</td>
       <td>Comedy</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Top Gear&nbsp;&nbsp;Adventure, Comedy, Reality-TV</td>
+      <td>Top Gear  Adventure, Comedy, Reality-TV</td>
       <td>Adventure</td>
       <td>Adventure</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Mission Blue&nbsp;&nbsp;Documentary, Drama</td>
+      <td>Mission Blue  Documentary, Drama</td>
       <td>Documentary</td>
       <td>Documentary</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Grace and Frankie&nbsp;&nbsp;Comedy</td>
+      <td>Grace and Frankie  Comedy</td>
       <td>Comedy</td>
       <td>Comedy</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Oxygen&nbsp;&nbsp;Drama, Fantasy, Sci-Fi</td>
+      <td>Oxygen  Drama, Fantasy, Sci-Fi</td>
       <td>Drama</td>
       <td>Drama</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>Untitled Patrick Osborne Fantasy Project&nbsp;&nbsp;Anim...</td>
+      <td>Untitled Patrick Osborne Fantasy Project  Anim...</td>
       <td>Animation</td>
       <td>Animation</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>Cry Babies Magic Tears&nbsp;&nbsp;Animation, Family</td>
+      <td>Cry Babies Magic Tears  Animation, Family</td>
       <td>Animation</td>
       <td>Animation</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>Johan Falk: Organizatsija Karayan&nbsp;&nbsp;Action, Cri...</td>
+      <td>Johan Falk: Organizatsija Karayan  Action, Cri...</td>
       <td>Action</td>
       <td>Action</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>The Rebel Hong Gil Dong&nbsp;&nbsp;Action, Drama, History</td>
+      <td>The Rebel Hong Gil Dong  Action, Drama, History</td>
       <td>Action</td>
       <td>Action</td>
     </tr>

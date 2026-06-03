@@ -1,0 +1,67 @@
+Traceback (most recent call last):
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/asyncio/base_events.py", line 684, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import openeo
+connection = openeo.connect("openeo.dataspace.copernicus.eu").authenticate_oidc()
+
+aoi = {
+     "type": "FeatureCollection",
+     "features": [
+         {
+             "type": "Feature",
+             "properties": {},
+             "geometry": {
+                 "type": "Polygon",
+                 "coordinates": [[
+                     [112.780, -7.228],
+                     [112.785, -7.228],
+                     [112.785, -7.232],
+                     [112.780, -7.232],
+                     [112.780, -7.228]
+                 ]]
+             }
+         }
+     ]
+ }
+
+ s5post = connection.load_collection(
+     "SENTINEL_5P_L2",
+     temporal_extent=["2025-01-01", "2026-06-01"],
+     spatial_extent={
+         "west": 112.780,
+         "south": -7.232,
+         "east": 112.785,
+         "north": -7.228
+     },
+     bands=["NO2"],
+ )
+
+ s5p_no2_daily = s5post.aggregate_temporal_period(reducer="mean", period="day")
+ s5p_no2_aoi = s5p_no2_daily.aggregate_spatial(reducer="mean", geometries=aoi)
+ job = s5p_no2_daily.execute_batch(title="NO2 Bulak Setro", outputfile="NO2bulaksetro.nc")
+------------------
+
+
+  [36mCell[39m[36m [39m[32mIn[3][39m[32m, line 24[39m
+[31m    [39m[31ms5post = connection.load_collection([39m
+    ^
+[31mIndentationError[39m[31m:[39m unexpected indent
+
+
