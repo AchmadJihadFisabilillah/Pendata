@@ -1,0 +1,1854 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Analisis Dataset Higher Education Students Performance Evaluation Menggunakan KNN di Orange &#8212; My NOTEBOOK</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'analisis_hespe_knn_orange';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Prediksi Kadar NO₂ Bulak Setro Menggunakan K-Nearest Neighbor (KNN)" href="jarak_ukur_bulaksetro_selesai.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.png" class="logo__image only-light" alt="My NOTEBOOK - Home"/>
+    <script>document.write(`<img src="_static/foto.png" class="logo__image only-dark" alt="My NOTEBOOK - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    WELCOME TO MY NOTEBOOK
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pendahuluan</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_mining.html">CRISP-DM (Cross Industry Standard Process for Data Mining)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bisnis_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">DATA UNDERSTANDING</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Eksplorasi Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="explorasi_data.html">Eksplorasi Data Dataset Iris</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="data_iris.html">PENDAHULUAN</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="explorasi_data_iris.html">LAPORAN EKSPLORASI DATASET IRIS</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Konsep Jarak dan Pertemuan 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jarak_ukur.html">Pengukuran Jarak/Similarity Berdasarkan PPT (Semua Metode)</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3.html">Data Student</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_1.html">Distance in Iris Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_2.html">Distance in Student Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pertemuan3_3.html">Prediksi Nilai Usia yang Hilang Menggunakan KNN</a></li>
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Preprocessing Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preprocessing_data.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="normalisasi_data.html">Normalisasi Data</a></li>
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">K-Nearest Neighbors</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="knn.html">K-Nearest Neighbor (KNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knn_misingvalue.html">KNN Missing Value</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="wknn.html">Weighted K-Nearest Neighbor(WKNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wknn_perhitungan.html">Perhitungan WKNN</a></li>
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Evaluasi Tengah Semester</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="LAPORAN_UTS.html">Klasifikasi Kesuburan Tanah Menggunakan K-Nearest Neighbors (KNN)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Metode Klasifikasi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="naive_bayes.html">Analisis Data Menggunakan Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knime_decision_tree_play_tennis.html">Panduan Lengkap Decision Tree di KNIME - Dataset Play Tennis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="panduan_random_forest_knime.html">Panduan Membuat Random Forest di KNIME</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regresi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="regresi-linear.html">Analisa Data Menggunakan Regresi Linier (A)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">jarak-ukur</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jarak_ukur_bulaksetro_selesai.html">Prediksi Kadar NO₂ Bulak Setro Menggunakan K-Nearest Neighbor (KNN)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Clasification with Orange using KNN</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Dataset Higher Education Students Performance Evaluation Menggunakan KNN di Orange</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/analisis_hespe_knn_orange.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analisis Dataset Higher Education Students Performance Evaluation Menggunakan KNN di Orange</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis Dataset Higher Education Students Performance Evaluation Menggunakan KNN di Orange</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan">1. Ringkasan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tentang-uci-machine-learning-repository">2. Tentang UCI Machine Learning Repository</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identitas-dan-tujuan-dataset">3. Identitas dan Tujuan Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-data">4. Struktur Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kamus-seluruh-variabel">5. Kamus Seluruh Variabel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identitas">5.1 Identitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-pribadi-fitur-110">5.2 Pertanyaan Pribadi: Fitur 1–10</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-keluarga-fitur-1116">5.3 Pertanyaan Keluarga: Fitur 11–16</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kebiasaan-pendidikan-dan-akademik-fitur-1730">5.4 Kebiasaan Pendidikan dan Akademik: Fitur 17–30</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-id-dan-target">5.5 COURSE ID dan Target</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-penting-tentang-tipe-data">6. Catatan Penting tentang Tipe Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saran-tipe-data-yang-lebih-kuat">Saran tipe data yang lebih kuat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-seluruh-gambar">7. Penjelasan Seluruh Gambar</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-1-data-table">Gambar 1 — Data Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-data-table">Fungsi Data Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-gambar">Kesimpulan gambar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-2-edit-domain">Gambar 2 — Edit Domain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-edit-domain">Fungsi Edit Domain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-metodologis">Catatan metodologis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-3-select-columns">Gambar 3 — Select Columns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alasan-pengaturan">Alasan pengaturan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-4-preprocess">Gambar 4 — Preprocess</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-normalisasi-penting">Mengapa normalisasi penting?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-penting-custom-preprocessing">Catatan penting: custom preprocessing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-5-predictions">Gambar 5 — Predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-hasil-terlihat-sempurna">Mengapa hasil terlihat sempurna?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penggunaan-yang-benar">Penggunaan yang benar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-6-pengaturan-knn">Gambar 6 — Pengaturan kNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-neighbors-5">Number of neighbors = 5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean">Euclidean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#by-distances">By Distances</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-7-test-and-score">Gambar 7 — Test and Score</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arti-cross-validation">Arti cross-validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peringatan-pada-bagian-bawah">Peringatan pada bagian bawah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengaturan-yang-lebih-sesuai">Pengaturan yang lebih sesuai</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-metrik">Interpretasi metrik</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#auc-0-695">AUC = 0,695</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ca-0-317">CA = 0,317</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-0-297">Precision = 0,297</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-0-317">Recall = 0,317</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-0-304">F1 = 0,304</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mcc-0-184">MCC = 0,184</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-8-confusion-matrix">Gambar 8 — Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas-aktual">Distribusi kelas aktual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinerja-per-kelas">Kinerja per kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-utama">Temuan utama</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#masalah-penting-pada-workflow-saat-ini">8. Masalah Penting pada Workflow Saat Ini</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potensi-data-leakage-pada-preprocessing">8.1 Potensi data leakage pada preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-evaluasi-yang-disarankan">Workflow evaluasi yang disarankan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-preprocess-perlu-menangani-kategori">8.2 Custom Preprocess perlu menangani kategori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions-tidak-boleh-dijadikan-nilai-evaluasi-utama">8.3 Predictions tidak boleh dijadikan nilai evaluasi utama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gunakan-5-fold-stratified">8.4 Gunakan 5-fold stratified</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-yang-direkomendasikan">9. Workflow yang Direkomendasikan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">9.1 Eksplorasi data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-tanpa-leakage">9.2 Evaluasi model tanpa leakage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-akhir-dan-prediksi-data-baru">9.3 Model akhir dan prediksi data baru</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-akhir">10. Kesimpulan Akhir</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-resmi">11. Sumber Resmi</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-dataset-higher-education-students-performance-evaluation-menggunakan-knn-di-orange">
+<h1>Analisis Dataset Higher Education Students Performance Evaluation Menggunakan KNN di Orange<a class="headerlink" href="#analisis-dataset-higher-education-students-performance-evaluation-menggunakan-knn-di-orange" title="Link to this heading">#</a></h1>
+<section id="ringkasan">
+<h2>1. Ringkasan<a class="headerlink" href="#ringkasan" title="Link to this heading">#</a></h2>
+<p>Dokumen ini menjelaskan:</p>
+<ol class="arabic simple">
+<li><p>sumber dan tujuan dataset;</p></li>
+<li><p>arti seluruh kolom dan kode nilainya;</p></li>
+<li><p>alasan penggunaan metode K-Nearest Neighbor (KNN);</p></li>
+<li><p>penjelasan seluruh tangkapan layar workflow Orange;</p></li>
+<li><p>interpretasi hasil evaluasi;</p></li>
+<li><p>kesalahan metodologis yang perlu diperbaiki agar hasil evaluasi lebih sahih.</p></li>
+</ol>
+<p>Dataset yang dianalisis adalah <strong>Higher Education Students Performance Evaluation</strong> dari <strong>UCI Machine Learning Repository</strong>. Dataset ini memiliki <strong>145 baris data mahasiswa</strong>, <strong>31 fitur prediktor</strong>, tidak memiliki nilai kosong, dan digunakan untuk tugas <strong>klasifikasi</strong>. Targetnya adalah <code class="docutils literal notranslate"><span class="pre">GRADE</span></code>, yaitu kategori nilai akhir mahasiswa.</p>
+<p>Hasil model KNN pada tangkapan layar:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head text-right"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AUC</p></td>
+<td class="text-right"><p>0,695</p></td>
+</tr>
+<tr class="row-odd"><td><p>CA / Accuracy</p></td>
+<td class="text-right"><p>0,317</p></td>
+</tr>
+<tr class="row-even"><td><p>F1-score</p></td>
+<td class="text-right"><p>0,304</p></td>
+</tr>
+<tr class="row-odd"><td><p>Precision</p></td>
+<td class="text-right"><p>0,297</p></td>
+</tr>
+<tr class="row-even"><td><p>Recall</p></td>
+<td class="text-right"><p>0,317</p></td>
+</tr>
+<tr class="row-odd"><td><p>MCC</p></td>
+<td class="text-right"><p>0,184</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Model memprediksi benar <strong>46 dari 145 data</strong>, sehingga akurasinya adalah:</p>
+<p>[
+\frac{46}{145}=0{,}3172\approx31{,}7%
+]</p>
+<p>Kelas terbanyak adalah <code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">=</span> <span class="pre">1</span></code> sebanyak 35 data atau 24,14%. Karena itu, baseline sederhana yang selalu menebak kelas terbanyak memperoleh akurasi 24,14%. KNN mencapai 31,7%, sekitar <strong>7,56 poin persentase lebih tinggi</strong>, tetapi performanya masih belum kuat.</p>
+</section>
+<hr class="docutils" />
+<section id="tentang-uci-machine-learning-repository">
+<h2>2. Tentang UCI Machine Learning Repository<a class="headerlink" href="#tentang-uci-machine-learning-repository" title="Link to this heading">#</a></h2>
+<p>UCI Machine Learning Repository adalah kumpulan basis data, teori domain, dan generator data yang digunakan komunitas machine learning untuk analisis empiris terhadap algoritma. Repositori ini dibuat pada 1987 sebagai arsip FTP oleh mahasiswa PhD UCI, David Aha, dan kemudian banyak digunakan oleh pelajar, pengajar, serta peneliti.</p>
+<p>Sumber resmi:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://archive.ics.uci.edu/about">UCI Machine Learning Repository — About</a></p></li>
+<li><p><a class="reference external" href="https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation">Higher Education Students Performance Evaluation</a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="identitas-dan-tujuan-dataset">
+<h2>3. Identitas dan Tujuan Dataset<a class="headerlink" href="#identitas-dan-tujuan-dataset" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspek</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nama</p></td>
+<td><p>Higher Education Students Performance Evaluation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bidang</p></td>
+<td><p>Social Science</p></td>
+</tr>
+<tr class="row-even"><td><p>Tugas</p></td>
+<td><p>Classification</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah baris</p></td>
+<td><p>145 mahasiswa</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah fitur</p></td>
+<td><p>31</p></td>
+</tr>
+<tr class="row-odd"><td><p>Target</p></td>
+<td><p>GRADE</p></td>
+</tr>
+<tr class="row-even"><td><p>Nilai kosong</p></td>
+<td><p>Tidak ada</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tahun pengumpulan</p></td>
+<td><p>2019</p></td>
+</tr>
+<tr class="row-even"><td><p>Sumber responden</p></td>
+<td><p>Mahasiswa Faculty of Engineering dan Faculty of Educational Sciences</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tujuan</p></td>
+<td><p>Memprediksi performa akhir semester mahasiswa menggunakan teknik machine learning</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>UCI membagi pertanyaan menjadi tiga kelompok:</p>
+<ul class="simple">
+<li><p>fitur 1–10: pertanyaan pribadi;</p></li>
+<li><p>fitur 11–16: pertanyaan keluarga;</p></li>
+<li><p>fitur 17–30: kebiasaan pendidikan atau akademik;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COURSE</span> <span class="pre">ID</span></code>: identitas mata kuliah;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRADE</span></code>: kelas target.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="struktur-data">
+<h2>4. Struktur Data<a class="headerlink" href="#struktur-data" title="Link to this heading">#</a></h2>
+<p>File berisi 33 kolom secara keseluruhan:</p>
+<ul class="simple">
+<li><p>1 kolom identitas: <code class="docutils literal notranslate"><span class="pre">STUDENT</span> <span class="pre">ID</span></code>;</p></li>
+<li><p>30 kolom pertanyaan: <code class="docutils literal notranslate"><span class="pre">1</span></code> sampai <code class="docutils literal notranslate"><span class="pre">30</span></code>;</p></li>
+<li><p>1 kolom mata kuliah: <code class="docutils literal notranslate"><span class="pre">COURSE</span> <span class="pre">ID</span></code>;</p></li>
+<li><p>1 kolom target: <code class="docutils literal notranslate"><span class="pre">GRADE</span></code>.</p></li>
+</ul>
+<p>Jumlah <strong>31 fitur</strong> di halaman UCI berasal dari:</p>
+<p>[
+30\ \text{pertanyaan} + 1\ \text{COURSE ID}=31\ \text{fitur}
+]</p>
+<p><code class="docutils literal notranslate"><span class="pre">STUDENT</span> <span class="pre">ID</span></code> bukan fitur prediktor dan <code class="docutils literal notranslate"><span class="pre">GRADE</span></code> adalah target.</p>
+</section>
+<hr class="docutils" />
+<section id="kamus-seluruh-variabel">
+<h2>5. Kamus Seluruh Variabel<a class="headerlink" href="#kamus-seluruh-variabel" title="Link to this heading">#</a></h2>
+<section id="identitas">
+<h3>5.1 Identitas<a class="headerlink" href="#identitas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Arti</p></th>
+<th class="head"><p>Peran yang disarankan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>STUDENT ID</p></td>
+<td><p>Identitas mahasiswa</p></td>
+<td><p>Meta, bukan fitur</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">STUDENT</span> <span class="pre">ID</span></code> tidak boleh digunakan untuk menghitung jarak KNN karena identitas tidak memiliki makna akademik.</p>
+</section>
+<section id="pertanyaan-pribadi-fitur-110">
+<h3>5.2 Pertanyaan Pribadi: Fitur 1–10<a class="headerlink" href="#pertanyaan-pribadi-fitur-110" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>No.</p></th>
+<th class="head"><p>Nama/arti</p></th>
+<th class="head"><p>Kode nilai resmi</p></th>
+<th class="head"><p>Sifat data yang disarankan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>1</p></td>
+<td><p>Student Age</p></td>
+<td><p>1=18–21; 2=22–25; 3=di atas 26</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td><p>Sex</p></td>
+<td><p>1=perempuan; 2=laki-laki</p></td>
+<td><p>Nominal biner</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>3</p></td>
+<td><p>Graduated high-school type</p></td>
+<td><p>1=swasta; 2=negeri; 3=lainnya</p></td>
+<td><p>Nominal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>4</p></td>
+<td><p>Scholarship type</p></td>
+<td><p>1=tidak ada; 2=25%; 3=50%; 4=75%; 5=penuh</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>5</p></td>
+<td><p>Additional work</p></td>
+<td><p>1=ya; 2=tidak</p></td>
+<td><p>Nominal biner</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>6</p></td>
+<td><p>Regular artistic or sports activity</p></td>
+<td><p>1=ya; 2=tidak</p></td>
+<td><p>Nominal biner</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p>Do you have a partner</p></td>
+<td><p>1=ya; 2=tidak</p></td>
+<td><p>Nominal biner</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>8</p></td>
+<td><p>Total salary if available</p></td>
+<td><p>1=USD135–200; 2=USD201–270; 3=USD271–340; 4=USD341–410; 5=di atas USD410</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>9</p></td>
+<td><p>Transportation to university</p></td>
+<td><p>1=bus; 2=mobil pribadi/taksi; 3=sepeda; 4=lainnya</p></td>
+<td><p>Nominal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>10</p></td>
+<td><p>Accommodation type in Cyprus</p></td>
+<td><p>1=sewa; 2=asrama; 3=bersama keluarga; 4=lainnya</p></td>
+<td><p>Nominal</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="pertanyaan-keluarga-fitur-1116">
+<h3>5.3 Pertanyaan Keluarga: Fitur 11–16<a class="headerlink" href="#pertanyaan-keluarga-fitur-1116" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>No.</p></th>
+<th class="head"><p>Nama/arti</p></th>
+<th class="head"><p>Kode nilai resmi</p></th>
+<th class="head"><p>Sifat data yang disarankan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>11</p></td>
+<td><p>Mother’s education</p></td>
+<td><p>1=SD; 2=SMP; 3=SMA; 4=universitas; 5=MSc; 6=PhD</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>12</p></td>
+<td><p>Father’s education</p></td>
+<td><p>1=SD; 2=SMP; 3=SMA; 4=universitas; 5=MSc; 6=PhD</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>13</p></td>
+<td><p>Number of sisters/brothers</p></td>
+<td><p>1=1; 2=2; 3=3; 4=4; 5=5 atau lebih</p></td>
+<td><p>Ordinal/kategori jumlah</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>14</p></td>
+<td><p>Parental status</p></td>
+<td><p>1=menikah; 2=bercerai; 3=salah satu/keduanya meninggal</p></td>
+<td><p>Nominal</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>15</p></td>
+<td><p>Mother’s occupation</p></td>
+<td><p>1=pensiun; 2=ibu rumah tangga; 3=PNS; 4=pegawai swasta; 5=wiraswasta; 6=lainnya</p></td>
+<td><p>Nominal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>16</p></td>
+<td><p>Father’s occupation</p></td>
+<td><p>1=pensiun; 2=PNS; 3=pegawai swasta; 4=wiraswasta; 5=lainnya</p></td>
+<td><p>Nominal</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="kebiasaan-pendidikan-dan-akademik-fitur-1730">
+<h3>5.4 Kebiasaan Pendidikan dan Akademik: Fitur 17–30<a class="headerlink" href="#kebiasaan-pendidikan-dan-akademik-fitur-1730" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>No.</p></th>
+<th class="head"><p>Nama/arti</p></th>
+<th class="head"><p>Kode nilai resmi</p></th>
+<th class="head"><p>Sifat data yang disarankan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>17</p></td>
+<td><p>Weekly study hours</p></td>
+<td><p>1=tidak ada; 2=&lt;5 jam; 3=6–10; 4=11–20; 5=&gt;20 jam</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>18</p></td>
+<td><p>Reading frequency, non-scientific</p></td>
+<td><p>1=tidak pernah; 2=kadang-kadang; 3=sering</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>19</p></td>
+<td><p>Reading frequency, scientific</p></td>
+<td><p>1=tidak pernah; 2=kadang-kadang; 3=sering</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>20</p></td>
+<td><p>Attendance at seminars/conferences</p></td>
+<td><p>1=ya; 2=tidak</p></td>
+<td><p>Nominal biner</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>21</p></td>
+<td><p>Impact of projects/activities on success</p></td>
+<td><p>1=positif; 2=negatif; 3=netral</p></td>
+<td><p>Nominal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>22</p></td>
+<td><p>Attendance to classes</p></td>
+<td><p>1=selalu; 2=kadang-kadang; 3=tidak pernah</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>23</p></td>
+<td><p>Preparation to midterm exams 1</p></td>
+<td><p>1=sendiri; 2=dengan teman; 3=tidak berlaku</p></td>
+<td><p>Nominal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>24</p></td>
+<td><p>Preparation to midterm exams 2</p></td>
+<td><p>1=mendekati tanggal ujian; 2=rutin selama semester; 3=tidak pernah</p></td>
+<td><p>Kategorikal/ordinal kontekstual</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>25</p></td>
+<td><p>Taking notes in classes</p></td>
+<td><p>1=tidak pernah; 2=kadang-kadang; 3=selalu</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>26</p></td>
+<td><p>Listening in classes</p></td>
+<td><p>1=tidak pernah; 2=kadang-kadang; 3=selalu</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>27</p></td>
+<td><p>Discussion improves interest and success</p></td>
+<td><p>1=tidak pernah; 2=kadang-kadang; 3=selalu</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>28</p></td>
+<td><p>Flip-classroom</p></td>
+<td><p>1=tidak berguna; 2=berguna; 3=tidak berlaku</p></td>
+<td><p>Nominal</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>29</p></td>
+<td><p>GPA semester sebelumnya, skala 4</p></td>
+<td><p>1=&lt;2,00; 2=2,00–2,49; 3=2,50–2,99; 4=3,00–3,49; 5=&gt;3,49</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>30</p></td>
+<td><p>Perkiraan GPA saat lulus, skala 4</p></td>
+<td><p>1=&lt;2,00; 2=2,00–2,49; 3=2,50–2,99; 4=3,00–3,49; 5=&gt;3,49</p></td>
+<td><p>Ordinal</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="course-id-dan-target">
+<h3>5.5 COURSE ID dan Target<a class="headerlink" href="#course-id-dan-target" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Arti</p></th>
+<th class="head"><p>Peran</p></th>
+<th class="head"><p>Tipe yang disarankan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>COURSE ID</p></td>
+<td><p>Kode mata kuliah</p></td>
+<td><p>Feature</p></td>
+<td><p>Kategorikal nominal</p></td>
+</tr>
+<tr class="row-odd"><td><p>GRADE</p></td>
+<td><p>Nilai akhir mahasiswa</p></td>
+<td><p>Target</p></td>
+<td><p>Kategorikal</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pemetaan target:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Kode GRADE</p></th>
+<th class="head"><p>Label</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td><p>Fail</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td><p>DD</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td><p>DC</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td><p>CC</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td><p>CB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td><p>BB</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td><p>BA</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>AA</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Walaupun <code class="docutils literal notranslate"><span class="pre">GRADE</span></code> memiliki urutan akademik, pada workflow ini ia dipakai sebagai target <strong>klasifikasi multikelas</strong>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="catatan-penting-tentang-tipe-data">
+<h2>6. Catatan Penting tentang Tipe Data<a class="headerlink" href="#catatan-penting-tentang-tipe-data" title="Link to this heading">#</a></h2>
+<p>Halaman UCI menyebut feature type secara umum sebagai <code class="docutils literal notranslate"><span class="pre">Integer</span></code>, tetapi angka dalam dataset banyak yang sebenarnya adalah <strong>kode kategori</strong>.</p>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">COURSE</span> <span class="pre">ID</span> <span class="pre">=</span> <span class="pre">9</span></code> bukan berarti nilainya lebih besar daripada <code class="docutils literal notranslate"><span class="pre">COURSE</span> <span class="pre">ID</span> <span class="pre">=</span> <span class="pre">1</span></code>;</p></li>
+<li><p>transportasi <code class="docutils literal notranslate"><span class="pre">4</span></code> bukan berarti empat kali transportasi <code class="docutils literal notranslate"><span class="pre">1</span></code>;</p></li>
+<li><p>pekerjaan ibu <code class="docutils literal notranslate"><span class="pre">6</span></code> bukan tingkat yang lebih tinggi daripada pekerjaan ibu <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+</ul>
+<p>Karena KNN menghitung jarak, memperlakukan kode nominal sebagai angka biasa dapat menghasilkan jarak yang tidak bermakna.</p>
+<section id="saran-tipe-data-yang-lebih-kuat">
+<h3>Saran tipe data yang lebih kuat<a class="headerlink" href="#saran-tipe-data-yang-lebih-kuat" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Nominal/biner</strong>: jadikan Categorical dan ubah menjadi one-hot encoding.</p></li>
+<li><p><strong>Ordinal</strong>: dapat dipertahankan sebagai numeric jika urutannya memang ingin digunakan.</p></li>
+<li><p><strong>COURSE ID</strong>: wajib Categorical.</p></li>
+<li><p><strong>GRADE</strong>: Categorical dan Target.</p></li>
+<li><p><strong>STUDENT ID</strong>: String dan Meta.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="penjelasan-seluruh-gambar">
+<h1>7. Penjelasan Seluruh Gambar<a class="headerlink" href="#penjelasan-seluruh-gambar" title="Link to this heading">#</a></h1>
+<section id="gambar-1-data-table">
+<h2>Gambar 1 — Data Table<a class="headerlink" href="#gambar-1-data-table" title="Link to this heading">#</a></h2>
+<p><img alt="Gambar 1 — Data Table" src="_images/01_data_table.png" /></p>
+<p>Tampilan menunjukkan:</p>
+<ul class="simple">
+<li><p>145 instances;</p></li>
+<li><p>no missing data;</p></li>
+<li><p>32 features;</p></li>
+<li><p>no target variable;</p></li>
+<li><p>1 meta attribute.</p></li>
+</ul>
+<p>Mengapa masih tertulis 32 features?</p>
+<p>Pada tahap ini <code class="docutils literal notranslate"><span class="pre">GRADE</span></code> belum ditetapkan sebagai target, sehingga Orange masih menghitung:</p>
+<p>[
+30\ \text{fitur pertanyaan}+COURSE\ ID+GRADE=32
+]</p>
+<p><code class="docutils literal notranslate"><span class="pre">STUDENT</span> <span class="pre">ID</span></code> sudah dikenali sebagai teks dan diperlakukan sebagai meta.</p>
+<section id="fungsi-data-table">
+<h3>Fungsi Data Table<a class="headerlink" href="#fungsi-data-table" title="Link to this heading">#</a></h3>
+<p>Data Table digunakan untuk memeriksa:</p>
+<ul class="simple">
+<li><p>header sudah terbaca;</p></li>
+<li><p>jumlah baris benar;</p></li>
+<li><p>tidak ada baris header yang masuk sebagai data;</p></li>
+<li><p>nilai pada setiap kolom masuk dengan benar;</p></li>
+<li><p>tidak ada missing value.</p></li>
+</ul>
+</section>
+<section id="kesimpulan-gambar">
+<h3>Kesimpulan gambar<a class="headerlink" href="#kesimpulan-gambar" title="Link to this heading">#</a></h3>
+<p>Dataset sudah terbaca sebanyak 145 baris tanpa missing value, tetapi role target belum ditentukan.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gambar-2-edit-domain">
+<h2>Gambar 2 — Edit Domain<a class="headerlink" href="#gambar-2-edit-domain" title="Link to this heading">#</a></h2>
+<p><img alt="Gambar 2 — Edit Domain" src="_images/02_edit_domain.png" /></p>
+<p>Tampilan menunjukkan:</p>
+<ul class="simple">
+<li><p>fitur 1–30 sebagian besar dibaca Numeric;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COURSE</span> <span class="pre">ID</span></code> diinterpretasikan sebagai Categorical;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRADE</span></code> diinterpretasikan sebagai Categorical;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STUDENT</span> <span class="pre">ID</span></code> sebagai String.</p></li>
+</ul>
+<section id="fungsi-edit-domain">
+<h3>Fungsi Edit Domain<a class="headerlink" href="#fungsi-edit-domain" title="Link to this heading">#</a></h3>
+<p>Edit Domain mengatur makna tipe variabel tanpa mengubah isi substantifnya.</p>
+<p>Pengaturan yang benar pada gambar:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">COURSE</span> <span class="pre">ID</span></code> sebagai Categorical;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRADE</span></code> sebagai Categorical;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STUDENT</span> <span class="pre">ID</span></code> sebagai String.</p></li>
+</ul>
+</section>
+<section id="catatan-metodologis">
+<h3>Catatan metodologis<a class="headerlink" href="#catatan-metodologis" title="Link to this heading">#</a></h3>
+<p>Menjadikan seluruh fitur 1–30 sebagai Numeric adalah penyederhanaan. Sebagian fitur memang ordinal, tetapi sebagian lain nominal. Untuk KNN yang lebih tepat:</p>
+<ul class="simple">
+<li><p>nominal sebaiknya Categorical;</p></li>
+<li><p>ordinal dapat Numeric jika jarak antarkategori diasumsikan berurutan dan sebanding.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gambar-3-select-columns">
+<h2>Gambar 3 — Select Columns<a class="headerlink" href="#gambar-3-select-columns" title="Link to this heading">#</a></h2>
+<p><img alt="Gambar 3 — Select Columns" src="_images/03_select_columns.png" /></p>
+<p>Pengaturan:</p>
+<ul class="simple">
+<li><p>Features: 31 kolom, yaitu fitur 1–30 dan <code class="docutils literal notranslate"><span class="pre">COURSE</span> <span class="pre">ID</span></code>;</p></li>
+<li><p>Target: <code class="docutils literal notranslate"><span class="pre">GRADE</span></code>;</p></li>
+<li><p>Meta: <code class="docutils literal notranslate"><span class="pre">STUDENT</span> <span class="pre">ID</span></code>;</p></li>
+<li><p>Ignored: kosong.</p></li>
+</ul>
+<section id="alasan-pengaturan">
+<h3>Alasan pengaturan<a class="headerlink" href="#alasan-pengaturan" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">GRADE</span></code> dipindahkan ke Target karena itulah kelas yang ingin diprediksi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">STUDENT</span> <span class="pre">ID</span></code> dipindahkan ke Meta karena identitas mahasiswa tidak boleh memengaruhi jarak.</p>
+<p>Setelah tahap ini struktur analisis menjadi:</p>
+<p>[
+X = {1,2,\ldots,30, COURSE\ ID}
+]</p>
+<p>[
+y = GRADE
+]</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gambar-4-preprocess">
+<h2>Gambar 4 — Preprocess<a class="headerlink" href="#gambar-4-preprocess" title="Link to this heading">#</a></h2>
+<p><img alt="Gambar 4 — Preprocess" src="_images/04_preprocess.png" /></p>
+<p>Pengaturan yang dipilih:</p>
+<ul class="simple">
+<li><p>Normalize Features;</p></li>
+<li><p>Normalize to interval <code class="docutils literal notranslate"><span class="pre">[0,1]</span></code>.</p></li>
+</ul>
+<p>Transformasi min-max secara konsep:</p>
+<p>[
+x’=\frac{x-x_{\min}}{x_{\max}-x_{\min}}
+]</p>
+<p>Nilai terkecil menjadi 0 dan nilai terbesar menjadi 1.</p>
+<section id="mengapa-normalisasi-penting">
+<h3>Mengapa normalisasi penting?<a class="headerlink" href="#mengapa-normalisasi-penting" title="Link to this heading">#</a></h3>
+<p>KNN menentukan tetangga berdasarkan jarak. Tanpa penyamaan skala, fitur dengan rentang lebih besar dapat mendominasi jarak.</p>
+</section>
+<section id="catatan-penting-custom-preprocessing">
+<h3>Catatan penting: custom preprocessing<a class="headerlink" href="#catatan-penting-custom-preprocessing" title="Link to this heading">#</a></h3>
+<p>Dokumentasi resmi Orange menyatakan bahwa kNN secara default:</p>
+<ol class="arabic simple">
+<li><p>menghapus data dengan target tidak diketahui;</p></li>
+<li><p>mengubah kategori menjadi one-hot encoding;</p></li>
+<li><p>menghapus kolom kosong;</p></li>
+<li><p>melakukan imputasi;</p></li>
+<li><p>melakukan standardisasi.</p></li>
+</ol>
+<p>Jika custom Preprocess dihubungkan sebagai <strong>Preprocessor</strong>, pipeline default learner akan ditimpa. Karena itu, jika ingin mempertahankan <code class="docutils literal notranslate"><span class="pre">COURSE</span> <span class="pre">ID</span></code> sebagai Categorical dan memakai min-max <code class="docutils literal notranslate"><span class="pre">[0,1]</span></code>, custom Preprocess sebaiknya berisi urutan:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Continuize</span> <span class="pre">Discrete</span> <span class="pre">Variables</span></code> → <strong>One-hot encoding</strong>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Normalize</span> <span class="pre">Features</span></code> → <code class="docutils literal notranslate"><span class="pre">[0,1]</span></code>.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gambar-5-predictions">
+<h2>Gambar 5 — Predictions<a class="headerlink" href="#gambar-5-predictions" title="Link to this heading">#</a></h2>
+<p><img alt="Gambar 5 — Predictions" src="_images/05_predictions.png" /></p>
+<p>Tabel menampilkan:</p>
+<ul class="simple">
+<li><p>probabilitas kelas dari 0 sampai 7;</p></li>
+<li><p>hasil prediksi kNN;</p></li>
+<li><p>error;</p></li>
+<li><p>GRADE asli;</p></li>
+<li><p>STUDENT ID;</p></li>
+<li><p>fitur yang sudah dinormalisasi.</p></li>
+</ul>
+<p>Pada gambar, prediksi terlihat sama dengan GRADE asli dan error banyak bernilai 0.</p>
+<section id="mengapa-hasil-terlihat-sempurna">
+<h3>Mengapa hasil terlihat sempurna?<a class="headerlink" href="#mengapa-hasil-terlihat-sempurna" title="Link to this heading">#</a></h3>
+<p>Data yang diprediksi tampaknya merupakan data yang sama dengan data yang dipakai melatih model. Pada KNN, sebuah data dapat menjadi tetangga terdekat dirinya sendiri dengan jarak 0. Dengan weight <code class="docutils literal notranslate"><span class="pre">By</span> <span class="pre">Distances</span></code>, tetangga berjarak 0 dapat sangat mendominasi.</p>
+<p>Karena itu, tampilan Predictions ini adalah <strong>prediksi in-sample</strong>, bukan bukti bahwa akurasi model 100%.</p>
+</section>
+<section id="penggunaan-yang-benar">
+<h3>Penggunaan yang benar<a class="headerlink" href="#penggunaan-yang-benar" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Predictions cocok untuk menerapkan model terlatih pada <strong>data baru yang belum pernah dipakai melatih model</strong>.</p></li>
+<li><p>Untuk mengukur performa generalisasi, gunakan hasil <strong>Test and Score</strong>, bukan error pada Predictions yang memakai data training yang sama.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gambar-6-pengaturan-knn">
+<h2>Gambar 6 — Pengaturan kNN<a class="headerlink" href="#gambar-6-pengaturan-knn" title="Link to this heading">#</a></h2>
+<p><img alt="Gambar 6 — kNN" src="_images/06_knn.png" /></p>
+<p>Pengaturan:</p>
+<ul class="simple">
+<li><p>Number of neighbors: <code class="docutils literal notranslate"><span class="pre">5</span></code>;</p></li>
+<li><p>Metric: <code class="docutils literal notranslate"><span class="pre">Euclidean</span></code>;</p></li>
+<li><p>Weight: <code class="docutils literal notranslate"><span class="pre">By</span> <span class="pre">Distances</span></code>.</p></li>
+</ul>
+<section id="number-of-neighbors-5">
+<h3>Number of neighbors = 5<a class="headerlink" href="#number-of-neighbors-5" title="Link to this heading">#</a></h3>
+<p>Model mencari lima data terdekat.</p>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>tetangga: 1, 1, 2, 1, 3;</p></li>
+<li><p>mayoritas atau bobot terbesar: kelas 1;</p></li>
+<li><p>prediksi: kelas 1.</p></li>
+</ul>
+<p>Nilai <code class="docutils literal notranslate"><span class="pre">K=5</span></code> adalah titik awal yang masuk akal, tetapi bukan jaminan nilai terbaik. Nilai K sebaiknya dibandingkan, misalnya 3, 5, 7, 9, dan 11.</p>
+</section>
+<section id="euclidean">
+<h3>Euclidean<a class="headerlink" href="#euclidean" title="Link to this heading">#</a></h3>
+<p>Jarak Euclidean:</p>
+<p>[
+d(x,z)=\sqrt{\sum_{j=1}^{p}(x_j-z_j)^2}
+]</p>
+<p>Metric ini cocok jika semua fitur sudah direpresentasikan dalam bentuk numerik yang bermakna dan berada pada skala sebanding.</p>
+</section>
+<section id="by-distances">
+<h3>By Distances<a class="headerlink" href="#by-distances" title="Link to this heading">#</a></h3>
+<p>Tetangga yang lebih dekat memiliki pengaruh lebih besar. Secara umum bobot dapat dipahami sebagai kebalikan jarak:</p>
+<p>[
+w_i\propto\frac{1}{d_i}
+]</p>
+<p>Jika jarak sangat kecil, pengaruhnya sangat besar.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gambar-7-test-and-score">
+<h2>Gambar 7 — Test and Score<a class="headerlink" href="#gambar-7-test-and-score" title="Link to this heading">#</a></h2>
+<p><img alt="Gambar 7 — Test and Score" src="_images/07_test_and_score.png" /></p>
+<p>Pengaturan pada gambar:</p>
+<ul class="simple">
+<li><p>Cross validation;</p></li>
+<li><p>number of folds = 10;</p></li>
+<li><p>Stratified dicentang.</p></li>
+</ul>
+<p>Hasil:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head text-right"><p>AUC</p></th>
+<th class="head text-right"><p>CA</p></th>
+<th class="head text-right"><p>F1</p></th>
+<th class="head text-right"><p>Precision</p></th>
+<th class="head text-right"><p>Recall</p></th>
+<th class="head text-right"><p>MCC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>kNN</p></td>
+<td class="text-right"><p>0,695</p></td>
+<td class="text-right"><p>0,317</p></td>
+<td class="text-right"><p>0,304</p></td>
+<td class="text-right"><p>0,297</p></td>
+<td class="text-right"><p>0,317</p></td>
+<td class="text-right"><p>0,184</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="arti-cross-validation">
+<h3>Arti cross-validation<a class="headerlink" href="#arti-cross-validation" title="Link to this heading">#</a></h3>
+<p>Pada 10-fold cross-validation, data dibagi menjadi 10 bagian. Sembilan bagian dipakai untuk pelatihan dan satu bagian untuk pengujian, lalu proses diulang sampai setiap bagian pernah menjadi data uji.</p>
+</section>
+<section id="peringatan-pada-bagian-bawah">
+<h3>Peringatan pada bagian bawah<a class="headerlink" href="#peringatan-pada-bagian-bawah" title="Link to this heading">#</a></h3>
+<p>Gambar menampilkan peringatan:</p>
+<blockquote>
+<div><p>Can’t run stratified 10-fold cross validation; the least common class …</p>
+</div></blockquote>
+<p>Kelas terkecil adalah <code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">0</span></code> dengan hanya 8 data. Stratified 10-fold membutuhkan setiap kelas memiliki setidaknya 10 data agar dapat dibagi ke 10 fold.</p>
+<p>Karena itu, <strong>10-fold stratified tidak dapat benar-benar dijalankan sesuai permintaan</strong>.</p>
+</section>
+<section id="pengaturan-yang-lebih-sesuai">
+<h3>Pengaturan yang lebih sesuai<a class="headerlink" href="#pengaturan-yang-lebih-sesuai" title="Link to this heading">#</a></h3>
+<p>Gunakan:</p>
+<ul class="simple">
+<li><p><strong>5-fold cross-validation</strong>;</p></li>
+<li><p><strong>Stratified</strong> aktif.</p></li>
+</ul>
+<p>Alasannya, kelas terkecil berjumlah 8 sehingga masih dapat didistribusikan ke 5 fold.</p>
+</section>
+<section id="interpretasi-metrik">
+<h3>Interpretasi metrik<a class="headerlink" href="#interpretasi-metrik" title="Link to this heading">#</a></h3>
+<section id="auc-0-695">
+<h4>AUC = 0,695<a class="headerlink" href="#auc-0-695" title="Link to this heading">#</a></h4>
+<p>Pada mode <code class="docutils literal notranslate"><span class="pre">(None,</span> <span class="pre">show</span> <span class="pre">average</span> <span class="pre">over</span> <span class="pre">classes)</span></code>, Orange menampilkan rata-rata berbobot antar kelas. AUC 0,695 menunjukkan kemampuan pemisahan kelas lebih baik daripada acak, tetapi belum kuat.</p>
+</section>
+<section id="ca-0-317">
+<h4>CA = 0,317<a class="headerlink" href="#ca-0-317" title="Link to this heading">#</a></h4>
+<p>CA adalah classification accuracy:</p>
+<p>[
+CA=\frac{\text{prediksi benar}}{\text{seluruh data}}
+]</p>
+<p>Model benar pada 46 dari 145 data:</p>
+<p>[
+CA=\frac{46}{145}=0{,}317
+]</p>
+</section>
+<section id="precision-0-297">
+<h4>Precision = 0,297<a class="headerlink" href="#precision-0-297" title="Link to this heading">#</a></h4>
+<p>Dari seluruh prediksi ke suatu kelas, rata-rata berbobot sekitar 29,7% tepat.</p>
+</section>
+<section id="recall-0-317">
+<h4>Recall = 0,317<a class="headerlink" href="#recall-0-317" title="Link to this heading">#</a></h4>
+<p>Dari seluruh data aktual pada tiap kelas, rata-rata berbobot sekitar 31,7% berhasil dikenali.</p>
+</section>
+<section id="f1-0-304">
+<h4>F1 = 0,304<a class="headerlink" href="#f1-0-304" title="Link to this heading">#</a></h4>
+<p>F1 adalah rata-rata harmonik precision dan recall. Nilai 0,304 menunjukkan keseimbangan keduanya masih rendah.</p>
+</section>
+<section id="mcc-0-184">
+<h4>MCC = 0,184<a class="headerlink" href="#mcc-0-184" title="Link to this heading">#</a></h4>
+<p>MCC berada pada rentang -1 sampai 1:</p>
+<ul class="simple">
+<li><p>1: prediksi sempurna;</p></li>
+<li><p>0: tidak lebih baik dari pola acak;</p></li>
+<li><p>-1: berlawanan sempurna.</p></li>
+</ul>
+<p>Nilai 0,184 berarti hubungan antara prediksi dan label asli masih lemah.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="gambar-8-confusion-matrix">
+<h2>Gambar 8 — Confusion Matrix<a class="headerlink" href="#gambar-8-confusion-matrix" title="Link to this heading">#</a></h2>
+<p><img alt="Gambar 8 — Confusion Matrix" src="_images/08_confusion_matrix.png" /></p>
+<p>Baris menunjukkan kelas aktual dan kolom menunjukkan kelas prediksi.</p>
+<p>Matriks:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Aktual \ Prediksi</p></th>
+<th class="head text-right"><p>0</p></th>
+<th class="head text-right"><p>1</p></th>
+<th class="head text-right"><p>2</p></th>
+<th class="head text-right"><p>3</p></th>
+<th class="head text-right"><p>4</p></th>
+<th class="head text-right"><p>5</p></th>
+<th class="head text-right"><p>6</p></th>
+<th class="head text-right"><p>7</p></th>
+<th class="head text-right"><p>Total aktual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p><strong>1</strong></p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>8</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p><strong>14</strong></p></td>
+<td class="text-right"><p>7</p></td>
+<td class="text-right"><p>5</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>7</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>35</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>13</p></td>
+<td class="text-right"><p><strong>6</strong></p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>24</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p><strong>9</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>21</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p><strong>0</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>5</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>5</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p><strong>4</strong></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>17</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p><strong>4</strong></p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>13</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p><strong>8</strong></p></td>
+<td class="text-right"><p>17</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>Total prediksi</p></td>
+<td class="text-right"><p>5</p></td>
+<td class="text-right"><p>46</p></td>
+<td class="text-right"><p>22</p></td>
+<td class="text-right"><p>27</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>15</p></td>
+<td class="text-right"><p>11</p></td>
+<td class="text-right"><p>17</p></td>
+<td class="text-right"><p>145</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Angka diagonal adalah prediksi benar:</p>
+<p>[
+1+14+6+9+0+4+4+8=46
+]</p>
+<section id="distribusi-kelas-aktual">
+<h3>Distribusi kelas aktual<a class="headerlink" href="#distribusi-kelas-aktual" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>GRADE</p></th>
+<th class="head"><p>Label</p></th>
+<th class="head text-right"><p>Jumlah</p></th>
+<th class="head text-right"><p>Persentase</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td><p>Fail</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>5,52%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td><p>DD</p></td>
+<td class="text-right"><p>35</p></td>
+<td class="text-right"><p>24,14%</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td><p>DC</p></td>
+<td class="text-right"><p>24</p></td>
+<td class="text-right"><p>16,55%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td><p>CC</p></td>
+<td class="text-right"><p>21</p></td>
+<td class="text-right"><p>14,48%</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td><p>CB</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>6,90%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td><p>BB</p></td>
+<td class="text-right"><p>17</p></td>
+<td class="text-right"><p>11,72%</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td><p>BA</p></td>
+<td class="text-right"><p>13</p></td>
+<td class="text-right"><p>8,97%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td><p>AA</p></td>
+<td class="text-right"><p>17</p></td>
+<td class="text-right"><p>11,72%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="kinerja-per-kelas">
+<h3>Kinerja per kelas<a class="headerlink" href="#kinerja-per-kelas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>GRADE</p></th>
+<th class="head text-right"><p>Support</p></th>
+<th class="head text-right"><p>Benar</p></th>
+<th class="head text-right"><p>Precision</p></th>
+<th class="head text-right"><p>Recall</p></th>
+<th class="head text-right"><p>F1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>0,200</p></td>
+<td class="text-right"><p>0,125</p></td>
+<td class="text-right"><p>0,154</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>35</p></td>
+<td class="text-right"><p>14</p></td>
+<td class="text-right"><p>0,304</p></td>
+<td class="text-right"><p>0,400</p></td>
+<td class="text-right"><p>0,346</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>24</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>0,273</p></td>
+<td class="text-right"><p>0,250</p></td>
+<td class="text-right"><p>0,261</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-right"><p>21</p></td>
+<td class="text-right"><p>9</p></td>
+<td class="text-right"><p>0,333</p></td>
+<td class="text-right"><p>0,429</p></td>
+<td class="text-right"><p>0,375</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0,000</p></td>
+<td class="text-right"><p>0,000</p></td>
+<td class="text-right"><p>0,000</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td class="text-right"><p>17</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>0,267</p></td>
+<td class="text-right"><p>0,235</p></td>
+<td class="text-right"><p>0,250</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td class="text-right"><p>13</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>0,364</p></td>
+<td class="text-right"><p>0,308</p></td>
+<td class="text-right"><p>0,333</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td class="text-right"><p>17</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>0,471</p></td>
+<td class="text-right"><p>0,471</p></td>
+<td class="text-right"><p>0,471</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="temuan-utama">
+<h3>Temuan utama<a class="headerlink" href="#temuan-utama" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">1</span></code> paling sering diprediksi: 46 kali.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">1</span></code> juga merupakan kelas aktual terbanyak: 35 data.</p></li>
+<li><p>Model tidak berhasil mengenali satu pun <code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">4</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">7</span></code> memiliki F1 per kelas tertinggi, sekitar 0,471.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">2</span></code> sering salah menjadi <code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">1</span></code>: 13 kasus.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">6</span></code> dan <code class="docutils literal notranslate"><span class="pre">GRADE</span> <span class="pre">7</span></code> sering tertukar.</p></li>
+<li><p>Ketidakseimbangan kelas dan kemiripan pola antarkelas kemungkinan berkontribusi terhadap kesalahan.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="masalah-penting-pada-workflow-saat-ini">
+<h1>8. Masalah Penting pada Workflow Saat Ini<a class="headerlink" href="#masalah-penting-pada-workflow-saat-ini" title="Link to this heading">#</a></h1>
+<section id="potensi-data-leakage-pada-preprocessing">
+<h2>8.1 Potensi data leakage pada preprocessing<a class="headerlink" href="#potensi-data-leakage-pada-preprocessing" title="Link to this heading">#</a></h2>
+<p>Dokumentasi resmi Orange memperingatkan bahwa mengeluarkan <strong>Preprocessed Data</strong> terlebih dahulu, kemudian mengirimkannya ke Test and Score, dapat menyebabkan overfitting atau data leakage.</p>
+<p>Penyebabnya: nilai minimum dan maksimum normalisasi dapat dihitung menggunakan seluruh dataset, termasuk fold yang nantinya menjadi data uji.</p>
+<section id="workflow-evaluasi-yang-disarankan">
+<h3>Workflow evaluasi yang disarankan<a class="headerlink" href="#workflow-evaluasi-yang-disarankan" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Select Columns ───────────────→ Test and Score (Data)
+kNN ──────────────────────────→ Test and Score (Learner)
+Preprocess (Preprocessor) ─────→ Test and Score (Preprocessor)
+</pre></div>
+</div>
+<p>Dalam konfigurasi ini, preprocessing dipelajari ulang hanya dari bagian training pada setiap fold.</p>
+</section>
+</section>
+<section id="custom-preprocess-perlu-menangani-kategori">
+<h2>8.2 Custom Preprocess perlu menangani kategori<a class="headerlink" href="#custom-preprocess-perlu-menangani-kategori" title="Link to this heading">#</a></h2>
+<p>Jika <code class="docutils literal notranslate"><span class="pre">COURSE</span> <span class="pre">ID</span></code> tetap Categorical dan custom preprocessing digunakan, tambahkan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Continuize Discrete Variables
+  └─ One-hot encoding
+Normalize Features
+  └─ [0,1]
+</pre></div>
+</div>
+</section>
+<section id="predictions-tidak-boleh-dijadikan-nilai-evaluasi-utama">
+<h2>8.3 Predictions tidak boleh dijadikan nilai evaluasi utama<a class="headerlink" href="#predictions-tidak-boleh-dijadikan-nilai-evaluasi-utama" title="Link to this heading">#</a></h2>
+<p>Predictions pada data training yang sama membuat KNN mudah menghafal setiap baris. Nilai evaluasi harus berasal dari cross-validation atau data uji terpisah.</p>
+</section>
+<section id="gunakan-5-fold-stratified">
+<h2>8.4 Gunakan 5-fold stratified<a class="headerlink" href="#gunakan-5-fold-stratified" title="Link to this heading">#</a></h2>
+<p>Karena kelas terkecil hanya 8 data, 10-fold stratified tidak memenuhi syarat pembagian. Gunakan 5-fold stratified agar setiap fold lebih mungkin memiliki contoh dari semua kelas.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="workflow-yang-direkomendasikan">
+<h1>9. Workflow yang Direkomendasikan<a class="headerlink" href="#workflow-yang-direkomendasikan" title="Link to this heading">#</a></h1>
+<section id="eksplorasi-data">
+<h2>9.1 Eksplorasi data<a class="headerlink" href="#eksplorasi-data" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CSV File Import
+├── Data Table
+└── Edit Domain
+      └── Select Columns
+          ├── Distributions
+          ├── Box Plot
+          ├── Rank
+          └── Correlations
+</pre></div>
+</div>
+</section>
+<section id="evaluasi-model-tanpa-leakage">
+<h2>9.2 Evaluasi model tanpa leakage<a class="headerlink" href="#evaluasi-model-tanpa-leakage" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Select Columns ──────────────────────→ Test and Score (Data)
+Preprocess ──────────────────────────→ Test and Score (Preprocessor)
+kNN ─────────────────────────────────→ Test and Score (Learner)
+Test and Score ──────────────────────→ Confusion Matrix
+</pre></div>
+</div>
+<p>Pengaturan:</p>
+<ul class="simple">
+<li><p>Preprocess:</p>
+<ul>
+<li><p>Continuize Discrete Variables: one-hot encoding;</p></li>
+<li><p>Normalize Features: <code class="docutils literal notranslate"><span class="pre">[0,1]</span></code>.</p></li>
+</ul>
+</li>
+<li><p>kNN:</p>
+<ul>
+<li><p>K = 5 untuk awal;</p></li>
+<li><p>Euclidean;</p></li>
+<li><p>By Distances.</p></li>
+</ul>
+</li>
+<li><p>Test and Score:</p>
+<ul>
+<li><p>5-fold cross-validation;</p></li>
+<li><p>Stratified aktif.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="model-akhir-dan-prediksi-data-baru">
+<h2>9.3 Model akhir dan prediksi data baru<a class="headerlink" href="#model-akhir-dan-prediksi-data-baru" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Select Columns ─────────→ kNN (Data)
+Preprocess ─────────────→ kNN (Preprocessor)
+kNN (Model) ────────────→ Predictions (Predictors)
+Data mahasiswa baru ────→ Predictions (Data)
+</pre></div>
+</div>
+<p>Data baru harus memiliki struktur fitur yang sama, tetapi GRADE boleh kosong karena itulah yang hendak diprediksi.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="kesimpulan-akhir">
+<h1>10. Kesimpulan Akhir<a class="headerlink" href="#kesimpulan-akhir" title="Link to this heading">#</a></h1>
+<p>Dataset ini layak digunakan untuk latihan klasifikasi multikelas, tetapi memiliki beberapa tantangan:</p>
+<ul class="simple">
+<li><p>hanya 145 data;</p></li>
+<li><p>target memiliki 8 kelas;</p></li>
+<li><p>distribusi kelas tidak seimbang;</p></li>
+<li><p>banyak fitur merupakan kode kategorikal;</p></li>
+<li><p>beberapa kelas sulit dibedakan;</p></li>
+<li><p>KNN sensitif terhadap representasi kategori dan skala.</p></li>
+</ul>
+<p>Model KNN dengan K=5 pada hasil tangkapan layar memperoleh akurasi 31,7%. Nilai ini lebih baik daripada baseline kelas mayoritas 24,14%, tetapi belum cukup kuat untuk penggunaan keputusan akademik nyata.</p>
+<p>Interpretasi yang tepat:</p>
+<blockquote>
+<div><p>Model KNN telah menangkap sebagian pola hubungan antara karakteristik mahasiswa dan GRADE, tetapi performanya masih rendah. Hasil ini sebaiknya dipandang sebagai eksperimen pembelajaran, bukan sistem prediksi final. Perbaikan utama adalah menata tipe variabel, melakukan one-hot encoding pada variabel nominal, menerapkan preprocessing di dalam cross-validation, menggunakan 5-fold stratified, dan membandingkan beberapa nilai K serta model baseline.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="sumber-resmi">
+<h1>11. Sumber Resmi<a class="headerlink" href="#sumber-resmi" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>UCI Machine Learning Repository, <strong>Higher Education Students Performance Evaluation</strong><br />
+<a class="reference external" href="https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation">https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation</a></p></li>
+<li><p>UCI Machine Learning Repository, <strong>About</strong><br />
+<a class="reference external" href="https://archive.ics.uci.edu/about">https://archive.ics.uci.edu/about</a></p></li>
+<li><p>Orange Data Mining, <strong>kNN widget</strong><br />
+<a class="reference external" href="https://orangedatamining.com/widget-catalog/model/knn/">https://orangedatamining.com/widget-catalog/model/knn/</a></p></li>
+<li><p>Orange Data Mining, <strong>Preprocess widget</strong><br />
+<a class="reference external" href="https://orangedatamining.com/widget-catalog/transform/preprocess/">https://orangedatamining.com/widget-catalog/transform/preprocess/</a></p></li>
+<li><p>Orange Data Mining, <strong>Test and Score widget</strong><br />
+<a class="reference external" href="https://orangedatamining.com/widget-catalog/evaluate/testandscore/">https://orangedatamining.com/widget-catalog/evaluate/testandscore/</a></p></li>
+<li><p>Orange Data Mining, <strong>Continuize widget</strong><br />
+<a class="reference external" href="https://orangedatamining.com/widget-catalog/transform/continuize/">https://orangedatamining.com/widget-catalog/transform/continuize/</a></p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="jarak_ukur_bulaksetro_selesai.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Prediksi Kadar NO₂ Bulak Setro Menggunakan K-Nearest Neighbor (KNN)</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Analisis Dataset Higher Education Students Performance Evaluation Menggunakan KNN di Orange</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan">1. Ringkasan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tentang-uci-machine-learning-repository">2. Tentang UCI Machine Learning Repository</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identitas-dan-tujuan-dataset">3. Identitas dan Tujuan Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-data">4. Struktur Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kamus-seluruh-variabel">5. Kamus Seluruh Variabel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identitas">5.1 Identitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-pribadi-fitur-110">5.2 Pertanyaan Pribadi: Fitur 1–10</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-keluarga-fitur-1116">5.3 Pertanyaan Keluarga: Fitur 11–16</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kebiasaan-pendidikan-dan-akademik-fitur-1730">5.4 Kebiasaan Pendidikan dan Akademik: Fitur 17–30</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-id-dan-target">5.5 COURSE ID dan Target</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-penting-tentang-tipe-data">6. Catatan Penting tentang Tipe Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saran-tipe-data-yang-lebih-kuat">Saran tipe data yang lebih kuat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-seluruh-gambar">7. Penjelasan Seluruh Gambar</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-1-data-table">Gambar 1 — Data Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-data-table">Fungsi Data Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-gambar">Kesimpulan gambar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-2-edit-domain">Gambar 2 — Edit Domain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-edit-domain">Fungsi Edit Domain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-metodologis">Catatan metodologis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-3-select-columns">Gambar 3 — Select Columns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alasan-pengaturan">Alasan pengaturan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-4-preprocess">Gambar 4 — Preprocess</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-normalisasi-penting">Mengapa normalisasi penting?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-penting-custom-preprocessing">Catatan penting: custom preprocessing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-5-predictions">Gambar 5 — Predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-hasil-terlihat-sempurna">Mengapa hasil terlihat sempurna?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penggunaan-yang-benar">Penggunaan yang benar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-6-pengaturan-knn">Gambar 6 — Pengaturan kNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#number-of-neighbors-5">Number of neighbors = 5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euclidean">Euclidean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#by-distances">By Distances</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-7-test-and-score">Gambar 7 — Test and Score</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arti-cross-validation">Arti cross-validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peringatan-pada-bagian-bawah">Peringatan pada bagian bawah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengaturan-yang-lebih-sesuai">Pengaturan yang lebih sesuai</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-metrik">Interpretasi metrik</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#auc-0-695">AUC = 0,695</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ca-0-317">CA = 0,317</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-0-297">Precision = 0,297</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recall-0-317">Recall = 0,317</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f1-0-304">F1 = 0,304</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mcc-0-184">MCC = 0,184</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-8-confusion-matrix">Gambar 8 — Confusion Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas-aktual">Distribusi kelas aktual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinerja-per-kelas">Kinerja per kelas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-utama">Temuan utama</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#masalah-penting-pada-workflow-saat-ini">8. Masalah Penting pada Workflow Saat Ini</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#potensi-data-leakage-pada-preprocessing">8.1 Potensi data leakage pada preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-evaluasi-yang-disarankan">Workflow evaluasi yang disarankan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-preprocess-perlu-menangani-kategori">8.2 Custom Preprocess perlu menangani kategori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predictions-tidak-boleh-dijadikan-nilai-evaluasi-utama">8.3 Predictions tidak boleh dijadikan nilai evaluasi utama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gunakan-5-fold-stratified">8.4 Gunakan 5-fold stratified</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-yang-direkomendasikan">9. Workflow yang Direkomendasikan</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">9.1 Eksplorasi data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-tanpa-leakage">9.2 Evaluasi model tanpa leakage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-akhir-dan-prediksi-data-baru">9.3 Model akhir dan prediksi data baru</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-akhir">10. Kesimpulan Akhir</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-resmi">11. Sumber Resmi</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Achmad Jihad Fisabilillah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
